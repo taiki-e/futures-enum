@@ -1,0 +1,32 @@
+[package]
+name = "futures-enum"
+# NB: When modifying, also modify html_root_url in lib.rs
+version = "0.1.0"
+authors = ["Taiki Endo <te316e89@gmail.com>"]
+edition = "2018"
+license = "Apache-2.0/MIT"
+description = "#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)] for enums."
+repository = "https://github.com/taiki-e/futures-enum"
+documentation = "https://docs.rs/futures-enum/"
+readme = "README.md"
+keywords = ["futures", "async", "future", "derive", "enum"]
+categories = ["asynchronous", "rust-patterns"]
+exclude = ["/.travis.yml"]
+
+[badges]
+travis-ci = { repository = "taiki-e/futures-enum" }
+
+[lib]
+proc-macro = true
+
+[features]
+default = []
+# TODO
+# compat = []
+# io-compat = []
+
+[dependencies]
+derive_utils = "0.6.2"
+
+[dev-dependencies]
+futures-preview = { version = "=0.3.0-alpha.12" }
