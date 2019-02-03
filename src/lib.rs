@@ -4,6 +4,7 @@
 //!
 //! ```rust
 //! # #![feature(futures_api)]
+//! use futures::future::{self, Future};
 //! use futures_enum::*;
 //!
 //! #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)]
@@ -12,13 +13,26 @@
 //!     B(B),
 //! }
 //!
-//! #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)]
-//! enum Either3<A, B, C> {
-//!     A(A),
-//!     B(B),
-//!     C(C),
+//! fn foo(x: i32) -> impl Future<Output = i32> {
+//!     if x < 0 {
+//!         Either::A(future::lazy(|_| 1))
+//!     } else {
+//!         Either::B(future::ready(x))
+//!     }
 //! }
 //! ```
+//!
+//! See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
+//!
+//! ## Supported traits
+//!
+//! * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html)
+//! * [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.12/futures/stream/trait.Stream.html)
+//! * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.12/futures/sink/trait.Sink.html)
+//! * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.12/futures/io/trait.AsyncRead.html)
+//! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.12/futures/io/trait.AsyncWrite.html)
+//!
+//! See [auto_enums#11](https://github.com/taiki-e/auto_enums/issues/11) for other traits.
 //!
 
 #![crate_type = "proc-macro"]
