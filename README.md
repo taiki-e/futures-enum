@@ -13,7 +13,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-futures-enum = "0.1.0"
+futures-enum = "0.1.1"
 ```
 
 Now, you can use futures-enum:
