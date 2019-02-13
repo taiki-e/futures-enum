@@ -14,7 +14,8 @@ categories = ["asynchronous", "rust-patterns"]
 exclude = ["/.travis.yml"]
 
 [badges]
-travis-ci = { repository = "taiki-e/futures-enum" }
+# https://github.com/rust-lang/crates.io/issues/1392
+# travis-ci = { repository = "taiki-e/futures-enum" }
 
 [lib]
 proc-macro = true
