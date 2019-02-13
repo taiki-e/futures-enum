@@ -47,6 +47,8 @@ fn foo(x: i32) -> impl Future<Output = i32> {
 
 See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
 
+In futures-enum 0.1.3 or later, it works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.
+
 ## Supported traits
 
 * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html)
@@ -55,7 +57,7 @@ See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patt
 * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.12/futures/io/trait.AsyncRead.html)
 * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.12/futures/io/trait.AsyncWrite.html)
 
-See [auto_enums#11](https://github.com/taiki-e/auto_enums/issues/11) for other traits.
+See [this issue](https://github.com/taiki-e/auto_enums/issues/11) for other traits.
 
 ## License
 
