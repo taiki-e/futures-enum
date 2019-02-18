@@ -40,7 +40,9 @@
 #![crate_type = "proc-macro"]
 #![recursion_limit = "256"]
 #![doc(html_root_url = "https://docs.rs/futures-enum/0.1.3")]
+#![deny(unsafe_code)]
 #![deny(rust_2018_idioms)]
+#![deny(unreachable_pub)]
 
 extern crate proc_macro;
 
