@@ -28,7 +28,7 @@ default = []
 
 [dependencies]
 derive_utils = "^0.6.3"
-find-crate = "^0.1.0"
+find-crate = "^0.3.0"
 quote = "^0.6.8"
 syn = { version = "^0.15.22", features = ["full"] }
 
