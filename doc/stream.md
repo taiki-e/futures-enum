@@ -3,7 +3,7 @@
 When deriving for enum like the following:
 
 ```rust
-#[enum_derive(Stream)]
+#[derive(Stream)]
 enum Enum<A, B> {
     A(A),
     B(B),
