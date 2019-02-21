@@ -140,7 +140,7 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
     ]);
 
     let path = if path == "futures_sink"
-        || original.as_ref().map(|s| s.as_str()) == Some("futures-sink-preview")
+        || original.as_ref().map(String::as_str) == Some("futures-sink-preview")
     {
         quote!(::#path)
     } else {
@@ -190,7 +190,7 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
     ]);
 
     let path = if path == "futures_io"
-        || original.as_ref().map(|s| s.as_str()) == Some("futures-io-preview")
+        || original.as_ref().map(String::as_str) == Some("futures-io-preview")
     {
         quote!(::#path)
     } else {
@@ -232,7 +232,7 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
     ]);
 
     let path = if path == "futures_io"
-        || original.as_ref().map(|s| s.as_str()) == Some("futures-io-preview")
+        || original.as_ref().map(String::as_str) == Some("futures-io-preview")
     {
         quote!(::#path)
     } else {
