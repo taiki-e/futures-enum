@@ -35,24 +35,24 @@ where
     #[inline]
     fn poll_read(
         &mut self,
-        lw: &::core::task::LocalWaker,
+        waker: &::core::task::Waker,
         buf: &mut [u8],
     ) -> ::core::task::Poll<::core::result::Result<usize, ::futures::io::Error>> {
         match self {
-            Enum::A(x) => ::futures::io::AsyncRead::poll_read(x, lw, buf),
-            Enum::B(x) => ::futures::io::AsyncRead::poll_read(x, lw, buf),
+            Enum::A(x) => ::futures::io::AsyncRead::poll_read(x, waker, buf),
+            Enum::B(x) => ::futures::io::AsyncRead::poll_read(x, waker, buf),
         }
     }
 
     #[inline]
     fn poll_vectored_read(
         &mut self,
-        lw: &::core::task::LocalWaker,
+        waker: &::core::task::Waker,
         vec: &mut [&mut ::futures::io::IoVec],
     ) -> ::core::task::Poll<::core::result::Result<usize, ::futures::io::Error>> {
         match self {
-            Enum::A(x) => ::futures::io::AsyncRead::poll_vectored_read(x, lw, vec),
-            Enum::B(x) => ::futures::io::AsyncRead::poll_vectored_read(x, lw, vec),
+            Enum::A(x) => ::futures::io::AsyncRead::poll_vectored_read(x, waker, vec),
+            Enum::B(x) => ::futures::io::AsyncRead::poll_vectored_read(x, waker, vec),
         }
     }
 }

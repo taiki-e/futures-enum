@@ -30,12 +30,12 @@ where
     #[inline]
     fn poll_ready(
         self: ::core::pin::Pin<&mut Self>,
-        lw: &::core::task::LocalWaker,
+        waker: &::core::task::Waker,
     ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {
-                Enum::A(x) => ::futures::sink::Sink::poll_ready(::core::pin::Pin::new_unchecked(x), lw),
-                Enum::B(x) => ::futures::sink::Sink::poll_ready(::core::pin::Pin::new_unchecked(x), lw),
+                Enum::A(x) => ::futures::sink::Sink::poll_ready(::core::pin::Pin::new_unchecked(x), waker),
+                Enum::B(x) => ::futures::sink::Sink::poll_ready(::core::pin::Pin::new_unchecked(x), waker),
             }
         }
     }
@@ -56,12 +56,12 @@ where
     #[inline]
     fn poll_flush(
         self: ::core::pin::Pin<&mut Self>,
-        lw: &::core::task::LocalWaker,
+        waker: &::core::task::Waker,
     ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {
-                Enum::A(x) => ::futures::sink::Sink::poll_flush(::core::pin::Pin::new_unchecked(x), lw),
-                Enum::B(x) => ::futures::sink::Sink::poll_flush(::core::pin::Pin::new_unchecked(x), lw),
+                Enum::A(x) => ::futures::sink::Sink::poll_flush(::core::pin::Pin::new_unchecked(x), waker),
+                Enum::B(x) => ::futures::sink::Sink::poll_flush(::core::pin::Pin::new_unchecked(x), waker),
             }
         }
     }
@@ -69,12 +69,12 @@ where
     #[inline]
     fn poll_close(
         self: ::core::pin::Pin<&mut Self>,
-        lw: &::core::task::LocalWaker,
+        waker: &::core::task::Waker,
     ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {
-                Enum::A(x) => ::futures::sink::Sink::poll_close(::core::pin::Pin::new_unchecked(x), lw),
-                Enum::B(x) => ::futures::sink::Sink::poll_close(::core::pin::Pin::new_unchecked(x), lw),
+                Enum::A(x) => ::futures::sink::Sink::poll_close(::core::pin::Pin::new_unchecked(x), waker),
+                Enum::B(x) => ::futures::sink::Sink::poll_close(::core::pin::Pin::new_unchecked(x), waker),
             }
         }
     }
