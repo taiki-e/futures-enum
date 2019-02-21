@@ -1,5 +1,7 @@
 # Unreleased
 
+* Fix documentations
+
 # 0.1.4 - 2019-02-21
 
 * Update to new nightly.
