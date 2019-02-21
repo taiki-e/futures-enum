@@ -1,5 +1,7 @@
 # Unreleased
 
+* Update to new nightly.
+
 # 0.1.3 - 2019-02-13
 
 * `futures-enum` works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.

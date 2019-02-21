@@ -18,7 +18,7 @@ matrix:
     # This is the minimum Rust version supported by futures-enum.
     # When updating this, the reminder to update the minimum required version in README.md.
     - name: cargo test (minimum required version)
-      rust: nightly-2019-01-11
+      rust: nightly-2019-02-15
 
     - rust: nightly
       name: cargo clippy

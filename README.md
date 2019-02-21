@@ -22,7 +22,7 @@ Now, you can use futures-enum:
 use futures_enum::*;
 ```
 
-The current version of futures-enum requires Rust nightly 2019-01-11 or later.
+The current version of futures-enum requires Rust nightly 2019-02-15 or later.
 
 ## Examples
 

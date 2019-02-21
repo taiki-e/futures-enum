@@ -99,7 +99,7 @@ pub fn derive_future(input: TokenStream) -> TokenStream {
             type Output;
             fn poll(
                 self: ::core::pin::Pin<&mut Self>,
-                lw: &::core::task::LocalWaker
+                waker: &::core::task::Waker
             ) -> ::core::task::Poll<Self::Output>;
         }
     }
@@ -122,7 +122,7 @@ pub fn derive_stream(input: TokenStream) -> TokenStream {
                 #[inline]
                 fn poll_next(
                     self: ::core::pin::Pin<&mut Self>,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                 ) -> ::core::task::Poll<::core::option::Option<Self::Item>>;
             }
         },
@@ -157,7 +157,7 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
                 #[inline]
                 fn poll_ready(
                     self: ::core::pin::Pin<&mut Self>,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                 ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
                 #[inline]
                 fn start_send(
@@ -167,12 +167,12 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
                 #[inline]
                 fn poll_flush(
                     self: ::core::pin::Pin<&mut Self>,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                 ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
                 #[inline]
                 fn poll_close(
                     self: ::core::pin::Pin<&mut Self>,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                 ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
             }
         },
@@ -207,13 +207,13 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
                 #[inline]
                 fn poll_read(
                     &mut self,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                     buf: &mut [u8],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
                 fn poll_vectored_read(
                     &mut self,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                     vec: &mut [&mut #path::IoVec],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
             }
@@ -247,24 +247,24 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
                 #[inline]
                 fn poll_write(
                     &mut self,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                     buf: &[u8],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
                 fn poll_vectored_write(
                     &mut self,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                     vec: &[&#path::IoVec],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
                 fn poll_flush(
                     &mut self,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                 ) -> ::core::task::Poll<::core::result::Result<(), #path::Error>>;
                 #[inline]
                 fn poll_close(
                     &mut self,
-                    lw: &::core::task::LocalWaker,
+                    waker: &::core::task::Waker,
                 ) -> ::core::task::Poll<::core::result::Result<(), #path::Error>>;
             }
         },
