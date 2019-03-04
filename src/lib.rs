@@ -24,7 +24,7 @@
 //!
 //! See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
 //!
-//! In version 0.1.4 or later, it works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.
+//! In version 0.1.3 or later, it works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.
 //!
 //! ## Supported traits
 //!
