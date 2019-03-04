@@ -6,6 +6,11 @@ matrix:
   fast_finish: true
 
   include:
+    # This is the minimum Rust version supported by futures-enum.
+    # When updating this, the reminder to update the minimum required version in README.md.
+    - name: cargo test (minimum required version)
+      rust: nightly-2019-02-15
+
     - rust: nightly
 
     - rust: nightly
@@ -13,12 +18,6 @@ matrix:
       script:
         - cargo update -Zminimal-versions
         - cargo test
-        - cargo test --release
-
-    # This is the minimum Rust version supported by futures-enum.
-    # When updating this, the reminder to update the minimum required version in README.md.
-    - name: cargo test (minimum required version)
-      rust: nightly-2019-02-15
 
     - rust: nightly
       name: cargo clippy
@@ -40,7 +39,6 @@ before_script:
 
 script:
   - cargo test
-  - cargo test --release
 
 notifications:
   email:
