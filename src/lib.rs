@@ -41,8 +41,7 @@
 #![recursion_limit = "256"]
 #![doc(html_root_url = "https://docs.rs/futures-enum/0.1.4")]
 #![deny(unsafe_code)]
-#![deny(rust_2018_idioms)]
-#![deny(unreachable_pub)]
+#![deny(rust_2018_idioms, unreachable_pub)]
 
 extern crate proc_macro;
 
