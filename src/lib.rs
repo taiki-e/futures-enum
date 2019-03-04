@@ -39,7 +39,7 @@
 
 #![crate_type = "proc-macro"]
 #![recursion_limit = "256"]
-#![doc(html_root_url = "https://docs.rs/futures-enum/0.1.4")]
+#![doc(html_root_url = "https://docs.rs/futures-enum/0.1.5")]
 #![deny(unsafe_code)]
 #![deny(rust_2018_idioms, unreachable_pub)]
 

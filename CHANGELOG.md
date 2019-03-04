@@ -1,5 +1,7 @@
 # Unreleased
 
+# 0.1.5 - 2019-03-04
+
 * Update minimum find-crate version to 0.3.0.
 
 * Fix documentations.
