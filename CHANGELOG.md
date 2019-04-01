@@ -1,5 +1,7 @@
 # Unreleased
 
+* Updated minimum `derive_utils` version to 0.7.0.
+
 # 0.1.5 - 2019-03-04
 
 * Updated minimum `find-crate` version to 0.3.0.

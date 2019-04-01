@@ -46,14 +46,19 @@
 
 extern crate proc_macro;
 
-use derive_utils::{derive_trait, quick_derive, EnumData as Data, __rt::ident_call_site};
+use derive_utils::{derive_trait, quick_derive, EnumData as Data};
 use find_crate::Manifest;
 use proc_macro::TokenStream;
+use proc_macro2::Span;
 use quote::quote;
 use syn::{parse_quote, Ident};
 
+pub(crate) fn ident<S: AsRef<str>>(s: S) -> Ident {
+    Ident::new(s.as_ref(), Span::call_site())
+}
+
 fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
-    let f = || (ident_call_site("futures"), None);
+    let f = || (ident("futures"), None);
 
     let manifest = match Manifest::new().ok() {
         Some(manifest) => manifest,
@@ -62,19 +67,16 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
 
     manifest.find(|name| crate_names.iter().any(|s| *s == name)).map_or_else(f, |package| {
         if package.is_original() {
-            (ident_call_site(&package.name().replace("_preview", "")), None)
+            (ident(&package.name().replace("_preview", "")), None)
         } else {
-            (ident_call_site(package.name()), Some(package.original_name().to_owned()))
+            (ident(package.name()), Some(package.original_name().to_owned()))
         }
     })
 }
 
 macro_rules! parse {
     ($input:expr) => {
-        match syn::parse($input)
-            .map_err(derive_utils::Error::from)
-            .and_then(|item| Data::from_derive(&item))
-        {
+        match syn::parse($input).and_then(|item| Data::from_derive(&item)) {
             Ok(data) => data,
             Err(err) => return TokenStream::from(err.to_compile_error()),
         }
