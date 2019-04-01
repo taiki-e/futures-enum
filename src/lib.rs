@@ -42,6 +42,7 @@
 #![doc(html_root_url = "https://docs.rs/futures-enum/0.1.5")]
 #![deny(unsafe_code)]
 #![deny(rust_2018_idioms, unreachable_pub)]
+#![deny(clippy::all, clippy::pedantic)]
 
 extern crate proc_macro;
 
@@ -61,7 +62,7 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
 
     manifest
         .find(|name| crate_names.iter().any(|s| *s == name))
-        .map(|package| {
+        .map_or_else(f, |package| {
             if package.is_original() {
                 (
                     ident_call_site(&package.name().replace("_preview", "")),
@@ -74,7 +75,6 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
                 )
             }
         })
-        .unwrap_or_else(f)
 }
 
 macro_rules! parse {
