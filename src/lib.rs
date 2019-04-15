@@ -37,7 +37,6 @@
 //! See [this issue](https://github.com/taiki-e/auto_enums/issues/11) for other traits.
 //!
 
-#![crate_type = "proc-macro"]
 #![recursion_limit = "256"]
 #![doc(html_root_url = "https://docs.rs/futures-enum/0.1.5")]
 #![deny(unsafe_code)]
