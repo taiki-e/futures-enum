@@ -27,46 +27,46 @@ where
     #[inline]
     fn poll_write(
         &mut self,
-        waker: &::core::task::Waker,
+        cx: &::core::task::Context<'_>,
         buf: &[u8],
     ) -> ::core::task::Poll<::core::result::Result<usize, ::futures::io::Error>> {
         match self {
-            Enum::A(x) => ::futures::io::AsyncWrite::poll_write(x, waker, buf),
-            Enum::B(x) => ::futures::io::AsyncWrite::poll_write(x, waker, buf),
+            Enum::A(x) => ::futures::io::AsyncWrite::poll_write(x, cx, buf),
+            Enum::B(x) => ::futures::io::AsyncWrite::poll_write(x, cx, buf),
         }
     }
 
     #[inline]
     fn poll_vectored_write(
         &mut self,
-        waker: &::core::task::Waker,
+        cx: &::core::task::Context<'_>,
         vec: &[&::futures::io::IoVec],
     ) -> ::core::task::Poll<::core::result::Result<usize, ::futures::io::Error>> {
         match self {
-            Enum::A(x) => ::futures::io::AsyncWrite::poll_vectored_write(x, waker, vec),
-            Enum::B(x) => ::futures::io::AsyncWrite::poll_vectored_write(x, waker, vec),
+            Enum::A(x) => ::futures::io::AsyncWrite::poll_vectored_write(x, cx, vec),
+            Enum::B(x) => ::futures::io::AsyncWrite::poll_vectored_write(x, cx, vec),
         }
     }
 
     #[inline]
     fn poll_flush(
         &mut self,
-        waker: &::core::task::Waker,
+        cx: &::core::task::Context<'_>,
     ) -> ::core::task::Poll<::core::result::Result<(), ::futures::io::Error>> {
         match self {
-            Enum::A(x) => ::futures::io::AsyncWrite::poll_flush(x, waker),
-            Enum::B(x) => ::futures::io::AsyncWrite::poll_flush(x, waker),
+            Enum::A(x) => ::futures::io::AsyncWrite::poll_flush(x, cx),
+            Enum::B(x) => ::futures::io::AsyncWrite::poll_flush(x, cx),
         }
     }
 
     #[inline]
     fn poll_close(
         &mut self,
-        waker: &::core::task::Waker,
+        cx: &::core::task::Context<'_>,
     ) -> ::core::task::Poll<::core::result::Result<(), ::futures::io::Error>> {
         match self {
-            Enum::A(x) => ::futures::io::AsyncWrite::poll_close(x, waker),
-            Enum::B(x) => ::futures::io::AsyncWrite::poll_close(x, waker),
+            Enum::A(x) => ::futures::io::AsyncWrite::poll_close(x, cx),
+            Enum::B(x) => ::futures::io::AsyncWrite::poll_close(x, cx),
         }
     }
 }

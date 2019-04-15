@@ -34,7 +34,7 @@ quote = "0.6.8"
 syn = { version = "0.15.22", features = ["full"] }
 
 [dev-dependencies]
-futureio = { version = "=0.3.0-alpha.13", package = "futures-io-preview" }
-futures-sink-preview = { version = "=0.3.0-alpha.13", package = "futures-sink-preview" }
-futures-core-preview = { version = "=0.3.0-alpha.13" }
-futures-preview = { version = "=0.3.0-alpha.13" }
+futureio = { version = "=0.3.0-alpha.14", package = "futures-io-preview" }
+futures-sink-preview = { version = "=0.3.0-alpha.14", package = "futures-sink-preview" }
+futures-core-preview = { version = "=0.3.0-alpha.14" }
+futures-preview = { version = "=0.3.0-alpha.14" }

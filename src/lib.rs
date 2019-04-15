@@ -52,7 +52,7 @@ use proc_macro2::Span;
 use quote::quote;
 use syn::{parse_quote, Ident};
 
-pub(crate) fn ident<S: AsRef<str>>(s: S) -> Ident {
+fn ident<S: AsRef<str>>(s: S) -> Ident {
     Ident::new(s.as_ref(), Span::call_site())
 }
 
@@ -91,7 +91,7 @@ pub fn derive_future(input: TokenStream) -> TokenStream {
             type Output;
             fn poll(
                 self: ::core::pin::Pin<&mut Self>,
-                waker: &::core::task::Waker
+                cx: &mut ::core::task::Context<'_>,
             ) -> ::core::task::Poll<Self::Output>;
         }
     }
@@ -111,7 +111,7 @@ pub fn derive_stream(input: TokenStream) -> TokenStream {
                 #[inline]
                 fn poll_next(
                     self: ::core::pin::Pin<&mut Self>,
-                    waker: &::core::task::Waker,
+                    cx: &mut ::core::task::Context<'_>,
                 ) -> ::core::task::Poll<::core::option::Option<Self::Item>>;
             }
         },
@@ -137,28 +137,27 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
         parse!(input),
         parse_quote!(#path::Sink),
         parse_quote! {
-            trait Sink {
-                type SinkItem;
+            trait Sink<Item> {
                 type SinkError;
                 #[inline]
                 fn poll_ready(
                     self: ::core::pin::Pin<&mut Self>,
-                    waker: &::core::task::Waker,
+                    cx: &mut ::core::task::Context<'_>,
                 ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
                 #[inline]
                 fn start_send(
                     self: ::core::pin::Pin<&mut Self>,
-                    item: Self::SinkItem,
+                    item: Item,
                 ) -> ::core::result::Result<(), Self::SinkError>;
                 #[inline]
                 fn poll_flush(
                     self: ::core::pin::Pin<&mut Self>,
-                    waker: &::core::task::Waker,
+                    cx: &mut ::core::task::Context<'_>,
                 ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
                 #[inline]
                 fn poll_close(
                     self: ::core::pin::Pin<&mut Self>,
-                    waker: &::core::task::Waker,
+                    cx: &mut ::core::task::Context<'_>,
                 ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
             }
         },
@@ -189,14 +188,14 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
                 unsafe fn initializer(&self) -> #path::Initializer;
                 #[inline]
                 fn poll_read(
-                    &mut self,
-                    waker: &::core::task::Waker,
+                    self: ::core::pin::Pin<&mut Self>,
+                    cx: &mut ::core::task::Context<'_>,
                     buf: &mut [u8],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
                 fn poll_vectored_read(
-                    &mut self,
-                    waker: &::core::task::Waker,
+                    self: ::core::pin::Pin<&mut Self>,
+                    cx: &mut ::core::task::Context<'_>,
                     vec: &mut [&mut #path::IoVec],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
             }
@@ -226,25 +225,25 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
             trait AsyncWrite {
                 #[inline]
                 fn poll_write(
-                    &mut self,
-                    waker: &::core::task::Waker,
+                    self: ::core::pin::Pin<&mut Self>,
+                    cx: &mut ::core::task::Context<'_>,
                     buf: &[u8],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
                 fn poll_vectored_write(
-                    &mut self,
-                    waker: &::core::task::Waker,
+                    self: ::core::pin::Pin<&mut Self>,
+                    cx: &mut ::core::task::Context<'_>,
                     vec: &[&#path::IoVec],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
                 fn poll_flush(
-                    &mut self,
-                    waker: &::core::task::Waker,
+                    self: ::core::pin::Pin<&mut Self>,
+                    cx: &mut ::core::task::Context<'_>,
                 ) -> ::core::task::Poll<::core::result::Result<(), #path::Error>>;
                 #[inline]
                 fn poll_close(
-                    &mut self,
-                    waker: &::core::task::Waker,
+                    self: ::core::pin::Pin<&mut Self>,
+                    cx: &mut ::core::task::Context<'_>,
                 ) -> ::core::task::Poll<::core::result::Result<(), #path::Error>>;
             }
         },
