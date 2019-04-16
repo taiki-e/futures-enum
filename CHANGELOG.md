@@ -1,5 +1,9 @@
 # Unreleased
 
+# 0.1.6 - 2019-04-16
+
+* Updated to new nightly.
+
 * Updated minimum `derive_utils` version to 0.7.0.
 
 # 0.1.5 - 2019-03-04
