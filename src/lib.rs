@@ -3,7 +3,6 @@
 //! ## Examples
 //!
 //! ```rust
-//! # #![feature(futures_api)]
 //! use futures::future::{self, Future};
 //! use futures_enum::*;
 //!

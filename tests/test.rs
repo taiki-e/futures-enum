@@ -1,4 +1,3 @@
-#![feature(futures_api)]
 #![deny(warnings)]
 #![deny(unsafe_code)]
 #![deny(rust_2018_idioms)]

@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 futures-enum = "0.1.6"
 ```
 
-The current version of futures-enum requires Rust nightly 2019-04-15 or later.
+The current version of futures-enum requires Rust nightly 2019-04-25 or later.
 
 ## Examples
 
