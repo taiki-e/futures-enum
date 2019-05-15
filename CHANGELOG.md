@@ -1,5 +1,7 @@
 # Unreleased
 
+* Supported for latest `futures` 0.3.0-alpha.16.
+
 # 0.1.6 - 2019-04-16
 
 * Updated to new nightly.

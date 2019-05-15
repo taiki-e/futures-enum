@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 futures-enum = "0.1.6"
 ```
 
-The current version of futures-enum requires Rust nightly 2019-04-25 or later.
+The current version of futures-enum requires Rust nightly 2019-05-09 or later.
 
 ## Examples
 
@@ -46,10 +46,10 @@ In futures-enum 0.1.3 or later, it works well even if the dependency contains on
 ## Supported traits
 
 * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](doc/future.md)
-* [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/stream/trait.Stream.html) - [generated code](doc/stream.md)
-* [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/sink/trait.Sink.html) - [generated code](doc/sink.md)
-* [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/io/trait.AsyncRead.html) - [generated code](doc/async_read.md)
-* [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/io/trait.AsyncWrite.html) - [generated code](doc/async_write.md)
+* [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/stream/trait.Stream.html) - [generated code](doc/stream.md)
+* [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/sink/trait.Sink.html) - [generated code](doc/sink.md)
+* [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncRead.html) - [generated code](doc/async_read.md)
+* [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncWrite.html) - [generated code](doc/async_write.md)
 
 See [this issue](https://github.com/taiki-e/auto_enums/issues/11) for other traits.
 

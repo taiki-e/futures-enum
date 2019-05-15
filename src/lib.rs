@@ -28,10 +28,10 @@
 //! ## Supported traits
 //!
 //! * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/future.md)
-//! * [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)
-//! * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
-//! * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
-//! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
+//! * [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)
+//! * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
+//! * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
+//! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
 //!
 //! See [this issue](https://github.com/taiki-e/auto_enums/issues/11) for other traits.
 //!
@@ -194,10 +194,10 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
                     buf: &mut [u8],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
-                fn poll_vectored_read(
+                fn poll_read_vectored(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
-                    vec: &mut [&mut #path::IoVec],
+                    bufs: &mut [::std::io::IoSliceMut<'_>],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
             }
         },
@@ -231,10 +231,10 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
                     buf: &[u8],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
-                fn poll_vectored_write(
+                fn poll_write_vectored(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
-                    vec: &[&#path::IoVec],
+                    bufs: &[::std::io::IoSlice<'_>],
                 ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
                 #[inline]
                 fn poll_flush(

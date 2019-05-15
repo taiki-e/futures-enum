@@ -1,4 +1,4 @@
-## [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/stream/trait.Stream.html)
+## [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/stream/trait.Stream.html)
 
 When deriving for enum like the following:
 
@@ -29,7 +29,7 @@ where
     #[inline]
     fn poll_next(
         self: ::core::pin::Pin<&mut Self>,
-        cx: &::core::task::Context<'_>,
+        cx: &mut ::core::task::Context<'_>,
     ) -> ::core::task::Poll<::core::option::Option<Self::Item>> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {

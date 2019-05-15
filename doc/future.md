@@ -29,7 +29,7 @@ where
     #[inline]
     fn poll(
         self: ::core::pin::Pin<&mut Self>,
-        cx: &::core::task::Context<'_>,
+        cx: &mut ::core::task::Context<'_>,
     ) -> ::core::task::Poll<Self::Output> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {

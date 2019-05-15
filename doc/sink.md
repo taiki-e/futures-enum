@@ -1,4 +1,4 @@
-## [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.14/futures/sink/trait.Sink.html)
+## [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/sink/trait.Sink.html)
 
 When deriving for enum like the following:
 
@@ -29,7 +29,7 @@ where
     #[inline]
     fn poll_ready(
         self: ::core::pin::Pin<&mut Self>,
-        cx: &::core::task::Context<'_>,
+        cx: &mut ::core::task::Context<'_>,
     ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {
@@ -55,7 +55,7 @@ where
     #[inline]
     fn poll_flush(
         self: ::core::pin::Pin<&mut Self>,
-        cx: &::core::task::Context<'_>,
+        cx: &mut ::core::task::Context<'_>,
     ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {
@@ -68,7 +68,7 @@ where
     #[inline]
     fn poll_close(
         self: ::core::pin::Pin<&mut Self>,
-        cx: &::core::task::Context<'_>,
+        cx: &mut ::core::task::Context<'_>,
     ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {
