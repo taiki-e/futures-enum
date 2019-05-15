@@ -13,7 +13,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-futures-enum = "0.1.6"
+futures-enum = "0.1.7"
 ```
 
 The current version of futures-enum requires Rust nightly 2019-05-09 or later.

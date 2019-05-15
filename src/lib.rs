@@ -37,7 +37,7 @@
 //!
 
 #![recursion_limit = "256"]
-#![doc(html_root_url = "https://docs.rs/futures-enum/0.1.6")]
+#![doc(html_root_url = "https://docs.rs/futures-enum/0.1.7")]
 #![warn(unsafe_code)]
 #![warn(rust_2018_idioms, unreachable_pub)]
 #![warn(clippy::all, clippy::pedantic)]
