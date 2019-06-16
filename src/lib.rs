@@ -1,4 +1,4 @@
-//! \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)\] for enums.
+//! \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
 //!
 //! ## Examples
 //!
@@ -6,7 +6,7 @@
 //! use futures::future::{self, Future};
 //! use futures_enum::*;
 //!
-//! #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)]
+//! #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
 //! enum Either<A, B> {
 //!     A(A),
 //!     B(B),
@@ -23,7 +23,7 @@
 //!
 //! See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
 //!
-//! In version 0.1.3 or later, it works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.
+//! futures-enum works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.
 //!
 //! ## Supported traits
 //!
@@ -32,16 +32,17 @@
 //! * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
 //! * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
 //! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
-//!
-//! See [this issue](https://github.com/taiki-e/auto_enums/issues/11) for other traits.
+//! * [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
+//! * [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
 //!
 
 #![recursion_limit = "256"]
 #![doc(html_root_url = "https://docs.rs/futures-enum/0.1.7")]
+#![doc(test(attr(deny(warnings), allow(dead_code, unused_assignments, unused_variables))))]
 #![warn(unsafe_code)]
 #![warn(rust_2018_idioms, unreachable_pub)]
-#![warn(clippy::all, clippy::pedantic)]
 #![warn(single_use_lifetimes)]
+#![warn(clippy::all, clippy::pedantic)]
 #![warn(clippy::nursery)]
 
 extern crate proc_macro;
@@ -192,13 +193,13 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
                     buf: &mut [u8],
-                ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
+                ) -> ::core::task::Poll<::std::io::Result<usize>>;
                 #[inline]
                 fn poll_read_vectored(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
                     bufs: &mut [::std::io::IoSliceMut<'_>],
-                ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
+                ) -> ::core::task::Poll<::std::io::Result<usize>>;
             }
         },
     )
@@ -229,23 +230,86 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
                     buf: &[u8],
-                ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
+                ) -> ::core::task::Poll<::std::io::Result<usize>>;
                 #[inline]
                 fn poll_write_vectored(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
                     bufs: &[::std::io::IoSlice<'_>],
-                ) -> ::core::task::Poll<::core::result::Result<usize, #path::Error>>;
+                ) -> ::core::task::Poll<::std::io::Result<usize>>;
                 #[inline]
                 fn poll_flush(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::result::Result<(), #path::Error>>;
+                ) -> ::core::task::Poll<::std::io::Result<()>>;
                 #[inline]
                 fn poll_close(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::result::Result<(), #path::Error>>;
+                ) -> ::core::task::Poll<::std::io::Result<()>>;
+            }
+        },
+    )
+    .unwrap_or_else(|e| e.to_compile_error())
+    .into()
+}
+
+#[proc_macro_derive(AsyncSeek)]
+pub fn derive_async_seek(input: TokenStream) -> TokenStream {
+    let (path, original) =
+        crate_name(&["futures-preview", "futures-util-preview", "futures-io-preview"]);
+
+    let path = if path == "futures_io"
+        || original.as_ref().map(String::as_str) == Some("futures-io-preview")
+    {
+        quote!(::#path)
+    } else {
+        quote!(::#path::io)
+    };
+
+    derive_trait!(
+        parse!(input),
+        parse_quote!(#path::AsyncSeek),
+        parse_quote! {
+            trait AsyncSeek {
+                #[inline]
+                fn poll_seek(
+                    self: ::core::pin::Pin<&mut Self>,
+                    cx: &mut ::core::task::Context<'_>,
+                    pos: ::std::io::SeekFrom,
+                ) -> ::core::task::Poll<::std::io::Result<u64>>;
+            }
+        },
+    )
+    .unwrap_or_else(|e| e.to_compile_error())
+    .into()
+}
+
+#[proc_macro_derive(AsyncBufRead)]
+pub fn derive_async_buf_read(input: TokenStream) -> TokenStream {
+    let (path, original) =
+        crate_name(&["futures-preview", "futures-util-preview", "futures-io-preview"]);
+
+    let path = if path == "futures_io"
+        || original.as_ref().map(String::as_str) == Some("futures-io-preview")
+    {
+        quote!(::#path)
+    } else {
+        quote!(::#path::io)
+    };
+
+    derive_trait!(
+        parse!(input),
+        parse_quote!(#path::AsyncBufRead),
+        parse_quote! {
+            trait AsyncBufRead {
+                #[inline]
+                fn poll_fill_buf<'__a>(
+                    self: ::core::pin::Pin<&'__a mut Self>,
+                    cx: &mut ::core::task::Context<'_>,
+                ) -> ::core::task::Poll<::std::io::Result<&'__a [u8]>>;
+                #[inline]
+                fn consume(self: ::core::pin::Pin<&mut Self>, amt: usize);
             }
         },
     )

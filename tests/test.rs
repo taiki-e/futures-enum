@@ -4,7 +4,7 @@
 
 use futures_enum::*;
 
-#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)]
+#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
 enum Either<A, B> {
     A(A),
     B(B),

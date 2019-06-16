@@ -2,32 +2,37 @@ language: rust
 sudo: false
 cache: cargo
 
+branches:
+  only:
+    - master
+    - staging
+    - trying
+
 matrix:
   fast_finish: true
 
   include:
     # This is the minimum Rust version supported by futures-enum.
     # When updating this, the reminder to update the minimum required version in README.md.
-    - name: cargo test (minimum required version)
-      rust: nightly-2019-05-09
+    - rust: beta # 1.36.0
+
+    # - rust: stable
+    # - rust: beta
+    - rust: nightly
+      script:
+        - cargo test
 
     - rust: nightly
-
-    - rust: nightly
-      name: cargo test (minimal versions)
+      name: cargo check (minimal versions)
       script:
         - cargo update -Zminimal-versions
-        - cargo test
+        - cargo check
 
     - rust: nightly
       name: cargo clippy
       script:
-        - if rustup component add clippy;
-          then
-            cargo clippy;
-          else
-            echo 'Skipping clippy';
-          fi
+        - rustup component add clippy || travis_terminate 0
+        - cargo clippy --tests
 
     - rust: stable
       name: cargo fmt
@@ -37,17 +42,19 @@ matrix:
 
     - rust: nightly
       name: cargo doc
+      env:
+        - RUSTDOCFLAGS=-Dwarnings
       script:
-        - RUSTDOCFLAGS=-Dwarnings cargo doc --no-deps
+        - cargo doc --no-deps
 
 env:
-  - RUSTFLAGS="-D warnings"
+  - RUSTFLAGS=-Dwarnings
 
 before_script:
   - set -o errexit
 
 script:
-  - cargo test
+  - cargo check
 
 notifications:
   email:
