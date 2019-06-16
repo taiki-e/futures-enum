@@ -1,5 +1,7 @@
 # Unreleased
 
+# 0.1.8 - 2019-06-16
+
 * Added support for `futures::io::{AsyncSeek, AsyncBufRead}`.
 
 * Updated minimum `find-crate` version to 0.4.0.
