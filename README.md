@@ -5,7 +5,7 @@
 [![documentation](https://docs.rs/futures-enum/badge.svg)](https://docs.rs/futures-enum/)
 [![license](https://img.shields.io/crates/l/futures-enum.svg)](https://crates.io/crates/futures-enum/)
 
-\#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)\] for enums.
+\#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
 
 ## Usage
 
@@ -24,7 +24,7 @@ The current futures-enum requires Rust 1.36 or later.
 use futures::future::{self, Future};
 use futures_enum::*;
 
-#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)]
+#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
 enum Either<A, B> {
     A(A),
     B(B),
@@ -41,7 +41,7 @@ fn foo(x: i32) -> impl Future<Output = i32> {
 
 See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
 
-In futures-enum 0.1.3 or later, it works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.
+futures-enum works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.
 
 ## Supported traits
 
@@ -50,8 +50,8 @@ In futures-enum 0.1.3 or later, it works well even if the dependency contains on
 * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/sink/trait.Sink.html) - [generated code](doc/sink.md)
 * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncRead.html) - [generated code](doc/async_read.md)
 * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncWrite.html) - [generated code](doc/async_write.md)
-
-See [this issue](https://github.com/taiki-e/auto_enums/issues/11) for other traits.
+* [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncSeek.html) - [generated code](doc/async_seek.md)
+* [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncBufRead.html) - [generated code](doc/async_buf_read.md)
 
 ## License
 

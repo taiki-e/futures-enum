@@ -27,11 +27,11 @@ default = []
 # io-compat = []
 
 [dependencies]
-derive_utils = "0.7.0"
-find-crate = "0.3.0"
+derive_utils = "0.7.2"
+find-crate = "0.4.0"
 proc-macro2 = "0.4.13"
 quote = "0.6.8"
-syn = { version = "0.15.22", features = ["full"] }
+syn = { version = "0.15.29", features = ["full"] }
 
 [dev-dependencies]
 futureio = { version = "=0.3.0-alpha.16", package = "futures-io-preview" }
