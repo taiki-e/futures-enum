@@ -25,21 +25,25 @@ where
     B: ::futures::io::AsyncBufRead,
 {
     #[inline]
-      fn poll_fill_buf<'__a>(
+    fn poll_fill_buf<'__a>(
         self: ::core::pin::Pin<&'__a mut Self>,
         cx: &mut ::core::task::Context<'_>,
-    ) -> ::core::task::Poll<::core::result::Result<&'__a [u8], ::futures::io::Error>>;
-        match ::core::pin::Pin::get_unchecked_mut(self) {
-            Enum::A(x) => ::futures::io::AsyncBufRead::poll_fill_buf(::core::pin::Pin::new_unchecked(x), cx),
-            Enum::B(x) => ::futures::io::AsyncBufRead::poll_fill_buf(::core::pin::Pin::new_unchecked(x), cx),
+    ) -> ::core::task::Poll<::std::io::Result<&'__a [u8]>> {
+        unsafe {
+            match ::core::pin::Pin::get_unchecked_mut(self) {
+                Enum::A(x) => ::futures::io::AsyncBufRead::poll_fill_buf(::core::pin::Pin::new_unchecked(x), cx),
+                Enum::B(x) => ::futures::io::AsyncBufRead::poll_fill_buf(::core::pin::Pin::new_unchecked(x), cx),
+            }
         }
     }
 
     #[inline]
     fn consume(self: ::core::pin::Pin<&mut Self>, amt: usize) {
-        match ::core::pin::Pin::get_unchecked_mut(self) {
-            Enum::A(x) => ::futures::io::AsyncBufRead::consume(::core::pin::Pin::new_unchecked(x), amt),
-            Enum::B(x) => ::futures::io::AsyncBufRead::consume(::core::pin::Pin::new_unchecked(x), amt),
+        unsafe {
+            match ::core::pin::Pin::get_unchecked_mut(self) {
+                Enum::A(x) => ::futures::io::AsyncBufRead::consume(::core::pin::Pin::new_unchecked(x), amt),
+                Enum::B(x) => ::futures::io::AsyncBufRead::consume(::core::pin::Pin::new_unchecked(x), amt),
+            }
         }
     }
 }
