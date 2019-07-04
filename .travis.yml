@@ -14,10 +14,10 @@ matrix:
   include:
     # This is the minimum Rust version supported by futures-enum.
     # When updating this, the reminder to update the minimum required version in README.md.
-    - rust: beta # 1.36.0
+    - rust: 1.36.0
 
-    # - rust: stable
-    # - rust: beta
+    - rust: stable
+    - rust: beta
     - rust: nightly
       script:
         - cargo test
@@ -42,10 +42,8 @@ matrix:
 
     - rust: nightly
       name: cargo doc
-      env:
-        - RUSTDOCFLAGS=-Dwarnings
       script:
-        - cargo doc --no-deps
+        - RUSTDOCFLAGS=-Dwarnings cargo doc --no-deps
 
 env:
   - RUSTFLAGS=-Dwarnings
