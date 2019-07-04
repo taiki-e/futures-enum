@@ -52,7 +52,7 @@ use find_crate::Manifest;
 use proc_macro::TokenStream;
 use proc_macro2::Span;
 use quote::quote;
-use syn::{parse_quote, Ident};
+use syn::{parse_quote, DeriveInput, Ident};
 
 fn ident<S: AsRef<str>>(s: S) -> Ident {
     Ident::new(s.as_ref(), Span::call_site())
@@ -77,7 +77,7 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
 
 macro_rules! parse {
     ($input:expr) => {
-        match syn::parse($input).and_then(|item| Data::from_derive(&item)) {
+        match syn::parse($input).and_then(|item: DeriveInput| Data::new(&item)) {
             Ok(data) => data,
             Err(err) => return TokenStream::from(err.to_compile_error()),
         }

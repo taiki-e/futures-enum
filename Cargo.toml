@@ -27,7 +27,7 @@ default = []
 # io-compat = []
 
 [dependencies]
-derive_utils = "0.7.2"
+derive_utils = "0.8.0"
 find-crate = "0.4.0"
 proc-macro2 = "0.4.13"
 quote = "0.6.8"

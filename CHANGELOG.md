@@ -2,6 +2,8 @@
 
 * Updated to support `futures-preview` 0.3.0-alpha.17.
 
+* Updated minimum `derive_utils` version to 0.8.0.
+
 # 0.1.8 - 2019-06-16
 
 * Added support for `futures::io::{AsyncSeek, AsyncBufRead}`.
