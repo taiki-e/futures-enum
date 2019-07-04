@@ -14,7 +14,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-futures-enum = "0.1.8"
+futures-enum = "0.1.9"
 futures-preview = "0.3.0-alpha.17"
 ```
 
