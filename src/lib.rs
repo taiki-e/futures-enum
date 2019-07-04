@@ -28,12 +28,12 @@
 //! ## Supported traits
 //!
 //! * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/future.md)
-//! * [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)
-//! * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
-//! * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
-//! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
-//! * [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
-//! * [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
+//! * [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)
+//! * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
+//! * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
+//! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
+//! * [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
+//! * [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
 //!
 
 #![recursion_limit = "256"]
@@ -101,8 +101,7 @@ pub fn derive_future(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(Stream)]
 pub fn derive_stream(input: TokenStream) -> TokenStream {
-    let (crate_, _) =
-        crate_name(&["futures-preview", "futures-util-preview", "futures-core-preview"]);
+    let (crate_, _) = crate_name(&["futures-preview", "futures-core-preview"]);
 
     derive_trait!(
         parse!(input),
@@ -124,8 +123,7 @@ pub fn derive_stream(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(Sink)]
 pub fn derive_sink(input: TokenStream) -> TokenStream {
-    let (path, original) =
-        crate_name(&["futures-preview", "futures-util-preview", "futures-sink-preview"]);
+    let (path, original) = crate_name(&["futures-preview", "futures-sink-preview"]);
 
     let path = if path == "futures_sink"
         || original.as_ref().map(String::as_str) == Some("futures-sink-preview")
@@ -140,27 +138,27 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
         parse_quote!(#path::Sink),
         parse_quote! {
             trait Sink<Item> {
-                type SinkError;
+                type Error;
                 #[inline]
                 fn poll_ready(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
+                ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
                 #[inline]
                 fn start_send(
                     self: ::core::pin::Pin<&mut Self>,
                     item: Item,
-                ) -> ::core::result::Result<(), Self::SinkError>;
+                ) -> ::core::result::Result<(), Self::Error>;
                 #[inline]
                 fn poll_flush(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
+                ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
                 #[inline]
                 fn poll_close(
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::result::Result<(), Self::SinkError>>;
+                ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
             }
         },
     )
@@ -170,8 +168,7 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncRead)]
 pub fn derive_async_read(input: TokenStream) -> TokenStream {
-    let (path, original) =
-        crate_name(&["futures-preview", "futures-util-preview", "futures-io-preview"]);
+    let (path, original) = crate_name(&["futures-preview", "futures-io-preview"]);
 
     let path = if path == "futures_io"
         || original.as_ref().map(String::as_str) == Some("futures-io-preview")
@@ -209,8 +206,7 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncWrite)]
 pub fn derive_async_write(input: TokenStream) -> TokenStream {
-    let (path, original) =
-        crate_name(&["futures-preview", "futures-util-preview", "futures-io-preview"]);
+    let (path, original) = crate_name(&["futures-preview", "futures-io-preview"]);
 
     let path = if path == "futures_io"
         || original.as_ref().map(String::as_str) == Some("futures-io-preview")
@@ -256,8 +252,7 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncSeek)]
 pub fn derive_async_seek(input: TokenStream) -> TokenStream {
-    let (path, original) =
-        crate_name(&["futures-preview", "futures-util-preview", "futures-io-preview"]);
+    let (path, original) = crate_name(&["futures-preview", "futures-io-preview"]);
 
     let path = if path == "futures_io"
         || original.as_ref().map(String::as_str) == Some("futures-io-preview")
@@ -287,8 +282,7 @@ pub fn derive_async_seek(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncBufRead)]
 pub fn derive_async_buf_read(input: TokenStream) -> TokenStream {
-    let (path, original) =
-        crate_name(&["futures-preview", "futures-util-preview", "futures-io-preview"]);
+    let (path, original) = crate_name(&["futures-preview", "futures-io-preview"]);
 
     let path = if path == "futures_io"
         || original.as_ref().map(String::as_str) == Some("futures-io-preview")

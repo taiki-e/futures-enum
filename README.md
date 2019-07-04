@@ -4,6 +4,7 @@
 [![version](https://img.shields.io/crates/v/futures-enum.svg)](https://crates.io/crates/futures-enum/)
 [![documentation](https://docs.rs/futures-enum/badge.svg)](https://docs.rs/futures-enum/)
 [![license](https://img.shields.io/crates/l/futures-enum.svg)](https://crates.io/crates/futures-enum/)
+[![Rustc Version](https://img.shields.io/badge/rustc-1.36+-lightgray.svg)](https://blog.rust-lang.org/2019/07/04/Rust-1.36.0.html)
 
 \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
 
@@ -14,6 +15,7 @@ Add this to your `Cargo.toml`:
 ```toml
 [dependencies]
 futures-enum = "0.1.8"
+futures-preview = "0.3.0-alpha.17"
 ```
 
 The current futures-enum requires Rust 1.36 or later.
@@ -46,12 +48,12 @@ futures-enum works well even if the dependency contains only sub-crates such as 
 ## Supported traits
 
 * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](doc/future.md)
-* [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/stream/trait.Stream.html) - [generated code](doc/stream.md)
-* [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/sink/trait.Sink.html) - [generated code](doc/sink.md)
-* [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncRead.html) - [generated code](doc/async_read.md)
-* [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncWrite.html) - [generated code](doc/async_write.md)
-* [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncSeek.html) - [generated code](doc/async_seek.md)
-* [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.16/futures/io/trait.AsyncBufRead.html) - [generated code](doc/async_buf_read.md)
+* [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/stream/trait.Stream.html) - [generated code](doc/stream.md)
+* [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/sink/trait.Sink.html) - [generated code](doc/sink.md)
+* [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncRead.html) - [generated code](doc/async_read.md)
+* [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncWrite.html) - [generated code](doc/async_write.md)
+* [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncSeek.html) - [generated code](doc/async_seek.md)
+* [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncBufRead.html) - [generated code](doc/async_buf_read.md)
 
 ## License
 

@@ -1,5 +1,7 @@
 # Unreleased
 
+* Updated to support `futures-preview` 0.3.0-alpha.17.
+
 # 0.1.8 - 2019-06-16
 
 * Added support for `futures::io::{AsyncSeek, AsyncBufRead}`.
