@@ -1,10 +1,21 @@
 # futures-enum
 
-[![Build Status](https://travis-ci.com/taiki-e/futures-enum.svg?branch=master)](https://travis-ci.com/taiki-e/futures-enum)
-[![version](https://img.shields.io/crates/v/futures-enum.svg)](https://crates.io/crates/futures-enum/)
-[![documentation](https://docs.rs/futures-enum/badge.svg)](https://docs.rs/futures-enum/)
-[![license](https://img.shields.io/crates/l/futures-enum.svg)](https://crates.io/crates/futures-enum/)
-[![Rustc Version](https://img.shields.io/badge/rustc-1.36+-lightgray.svg)](https://blog.rust-lang.org/2019/07/04/Rust-1.36.0.html)
+[![Build Status][azure-badge]][azure-url]
+[![Crates.io][crates-version-badge]][crates-url]
+[![Docs.rs][docs-badge]][docs-url]
+[![License][crates-license-badge]][crates-url]
+[![Minimum supported Rust version][rustc-badge]][rustc-url]
+
+[azure-badge]: https://dev.azure.com/taiki-e/taiki-e/_apis/build/status/taiki-e.futures-enum?branchName=master
+[azure-url]: https://dev.azure.com/taiki-e/taiki-e/_build/latest?definitionId=7&branchName=master
+[crates-version-badge]: https://img.shields.io/crates/v/futures-enum.svg
+[crates-license-badge]: https://img.shields.io/crates/l/futures-enum.svg
+[crates-badge]: https://img.shields.io/crates/v/futures-enum.svg
+[crates-url]: https://crates.io/crates/futures-enum/
+[docs-badge]: https://docs.rs/futures-enum/badge.svg
+[docs-url]: https://docs.rs/futures-enum/
+[rustc-badge]: https://img.shields.io/badge/rustc-1.36+-lightgray.svg
+[rustc-url]: https://blog.rust-lang.org/2019/07/04/Rust-1.36.0.html
 
 \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
 
