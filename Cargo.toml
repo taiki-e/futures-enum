@@ -11,11 +11,6 @@ documentation = "https://docs.rs/futures-enum/"
 readme = "README.md"
 keywords = ["futures", "async", "future", "derive", "enum"]
 categories = ["asynchronous", "rust-patterns"]
-exclude = ["/.travis.yml", "/bors.toml"]
-
-[badges]
-# https://github.com/rust-lang/crates.io/issues/1392
-# travis-ci = { repository = "taiki-e/futures-enum" }
 
 [lib]
 proc-macro = true
