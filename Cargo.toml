@@ -15,13 +15,16 @@ description = "#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)] for enums.
 proc-macro = true
 
 [features]
+default = ["renamed"]
+# Enable to allow using this crate as a renamed dependency
+renamed = ["find-crate"]
 # TODO
 # compat = []
 # io-compat = []
 
 [dependencies]
 derive_utils = "0.8.0"
-find-crate = "0.4.0"
+find-crate = { version = "0.4.0", optional = true }
 proc-macro2 = "0.4.13"
 quote = "0.6.8"
 syn = { version = "0.15.29", features = ["full"] }

@@ -1,5 +1,7 @@
 # Unreleased
 
+* Added `renamed` feature to allow `find-crate` dependency to opt-out.
+
 # 0.1.9 - 2019-07-04
 
 * Updated to support `futures-preview` 0.3.0-alpha.17.

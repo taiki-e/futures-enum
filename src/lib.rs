@@ -47,7 +47,6 @@
 extern crate proc_macro;
 
 use derive_utils::{derive_trait, quick_derive, EnumData as Data};
-use find_crate::Manifest;
 use proc_macro::TokenStream;
 use proc_macro2::Span;
 use quote::quote;
@@ -57,7 +56,10 @@ fn ident<S: AsRef<str>>(s: S) -> Ident {
     Ident::new(s.as_ref(), Span::call_site())
 }
 
+#[cfg(feature = "renamed")]
 fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
+    use find_crate::Manifest;
+
     let f = || (ident("futures"), None);
 
     let manifest = match Manifest::new().ok() {
@@ -72,6 +74,11 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
             (ident(package.name()), Some(package.original_name().to_owned()))
         }
     })
+}
+
+#[cfg(not(feature = "renamed"))]
+fn crate_name(_: &[&str]) -> (Ident, Option<String>) {
+    (ident("futures"), None)
 }
 
 macro_rules! parse {
