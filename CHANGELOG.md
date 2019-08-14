@@ -2,6 +2,10 @@
 
 * Added `renamed` feature to allow `find-crate` dependency to opt-out.
 
+* Updated `proc-macro2`, `syn`, and `quote` to 1.0.
+
+* Updated `derive_utils` to 0.9.
+
 # 0.1.9 - 2019-07-04
 
 * Updated to support `futures-preview` 0.3.0-alpha.17.

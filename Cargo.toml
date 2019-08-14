@@ -23,14 +23,13 @@ renamed = ["find-crate"]
 # io-compat = []
 
 [dependencies]
-derive_utils = "0.8.0"
-find-crate = { version = "0.4.0", optional = true }
-proc-macro2 = "0.4.13"
-quote = "0.6.8"
-syn = { version = "0.15.29", features = ["full"] }
+derive_utils = "0.9"
+find-crate = { version = "0.4", optional = true }
+quote = "1.0"
+syn = { version = "1.0", features = ["full"] }
 
 [dev-dependencies]
-futureio = { version = "=0.3.0-alpha.17", package = "futures-io-preview" }
-futures-sink-preview = { version = "=0.3.0-alpha.17", package = "futures-sink-preview" }
-futures-core-preview = { version = "=0.3.0-alpha.17" }
-futures-preview = { version = "=0.3.0-alpha.17" }
+futureio = { version = "=0.3.0-alpha.18", package = "futures-io-preview" }
+futures-sink-preview = { version = "=0.3.0-alpha.18", package = "futures-sink-preview" }
+futures-core-preview = { version = "=0.3.0-alpha.18" }
+futures-preview = { version = "=0.3.0-alpha.18" }

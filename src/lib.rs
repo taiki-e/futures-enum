@@ -48,19 +48,14 @@ extern crate proc_macro;
 
 use derive_utils::{derive_trait, quick_derive, EnumData as Data};
 use proc_macro::TokenStream;
-use proc_macro2::Span;
-use quote::quote;
-use syn::{parse_quote, DeriveInput, Ident};
-
-fn ident<S: AsRef<str>>(s: S) -> Ident {
-    Ident::new(s.as_ref(), Span::call_site())
-}
+use quote::{format_ident, quote};
+use syn::{parse_quote, Ident};
 
 #[cfg(feature = "renamed")]
 fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
     use find_crate::Manifest;
 
-    let f = || (ident("futures"), None);
+    let f = || (format_ident!("futures"), None);
 
     let manifest = match Manifest::new().ok() {
         Some(manifest) => manifest,
@@ -69,21 +64,21 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
 
     manifest.find(|name| crate_names.iter().any(|s| *s == name)).map_or_else(f, |package| {
         if package.is_original() {
-            (ident(&package.name().replace("_preview", "")), None)
+            (format_ident!("{}", package.name().replace("_preview", "")), None)
         } else {
-            (ident(package.name()), Some(package.original_name().to_owned()))
+            (format_ident!("{}", package.name()), Some(package.original_name().to_owned()))
         }
     })
 }
 
 #[cfg(not(feature = "renamed"))]
 fn crate_name(_: &[&str]) -> (Ident, Option<String>) {
-    (ident("futures"), None)
+    (format_ident!("futures"), None)
 }
 
 macro_rules! parse {
     ($input:expr) => {
-        match syn::parse($input).and_then(|item: DeriveInput| Data::new(&item)) {
+        match syn::parse($input).and_then(|item: syn::ItemEnum| Data::new(&item)) {
             Ok(data) => data,
             Err(err) => return TokenStream::from(err.to_compile_error()),
         }
