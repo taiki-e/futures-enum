@@ -1,5 +1,7 @@
 # Unreleased
 
+# 0.1.10 - 2019-08-14
+
 * Added `renamed` feature to allow `find-crate` dependency to opt-out.
 
 * Updated `proc-macro2`, `syn`, and `quote` to 1.0.
