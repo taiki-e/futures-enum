@@ -6,10 +6,12 @@ edition = "2018"
 license = "Apache-2.0/MIT"
 repository = "https://github.com/taiki-e/futures-enum"
 documentation = "https://docs.rs/futures-enum/"
-readme = "README.md"
 keywords = ["futures", "async", "future", "derive", "enum"]
 categories = ["asynchronous", "rust-patterns"]
-description = "#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite)] for enums."
+readme = "README.md"
+description = """
+#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)] for enums.
+"""
 
 [lib]
 proc-macro = true
