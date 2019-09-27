@@ -28,12 +28,12 @@
 //! ## Supported traits
 //!
 //! * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/future.md)
-//! * [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)
-//! * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
-//! * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
-//! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
-//! * [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
-//! * [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
+//! * [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)
+//! * [`Sink`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
+//! * [`AsyncRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
+//! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
+//! * [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
+//! * [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
 //!
 
 #![recursion_limit = "256"]
@@ -118,6 +118,8 @@ pub fn derive_stream(input: TokenStream) -> TokenStream {
                     self: ::core::pin::Pin<&mut Self>,
                     cx: &mut ::core::task::Context<'_>,
                 ) -> ::core::task::Poll<::core::option::Option<Self::Item>>;
+                #[inline]
+                fn size_hint(&self) -> (usize, ::core::option::Option<usize>);
             }
         },
     )
@@ -187,8 +189,6 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
         parse_quote!(#path::AsyncRead),
         parse_quote! {
             trait AsyncRead {
-                #[inline]
-                unsafe fn initializer(&self) -> #path::Initializer;
                 #[inline]
                 fn poll_read(
                     self: ::core::pin::Pin<&mut Self>,

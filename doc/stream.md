@@ -1,4 +1,4 @@
-## [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.17/futures/stream/trait.Stream.html)
+## [`Stream`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/stream/trait.Stream.html)
 
 When deriving for enum like the following:
 
@@ -36,6 +36,14 @@ where
                 Enum::A(x) => ::futures::stream::Stream::poll_next(::core::pin::Pin::new_unchecked(x), cx),
                 Enum::B(x) => ::futures::stream::Stream::poll_next(::core::pin::Pin::new_unchecked(x), cx),
             }
+        }
+    }
+
+    #[inline]
+    fn size_hint(&self) -> (usize, ::core::option::Option<usize>) {
+        match self {
+            Enum::A(x) => ::futures::stream::Stream::size_hint(x),
+            Enum::B(x) => ::futures::stream::Stream::size_hint(x),
         }
     }
 }
