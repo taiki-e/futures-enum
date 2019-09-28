@@ -34,8 +34,8 @@ The current futures-enum requires Rust 1.36 or later.
 ## Examples
 
 ```rust
-use futures::future::{self, Future};
 use futures_enum::*;
+use std::future::Future;
 
 #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
 enum Either<A, B> {
@@ -45,16 +45,16 @@ enum Either<A, B> {
 
 fn foo(x: i32) -> impl Future<Output = i32> {
     if x < 0 {
-        Either::A(future::lazy(|_| 1))
+        Either::A(async { 1 })
     } else {
-        Either::B(future::ready(x))
+        Either::B(async move { x })
     }
 }
 ```
 
-See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
+futures-enum works well even if the dependency contains only sub-crates such as `futures-core`, `futures-io`, `futures-sink`, etc.
 
-futures-enum works well even if the dependency contains only sub-crates such as `futures-core`, `futures-io`, etc.
+See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
 
 ## Supported traits
 

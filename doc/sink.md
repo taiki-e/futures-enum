@@ -19,10 +19,10 @@ enum Enum<A, B> {
 }
 
 #[allow(unsafe_code)]
-impl<A, B> ::futures::sink::Sink<Item> for Enum<A, B>
+impl<A, B> ::futures::sink::Sink<__Item> for Enum<A, B>
 where
-    A: ::futures::sink::Sink<Item>,
-    B: ::futures::sink::Sink<Item, Error = <A as ::futures::sink::Sink>::Error>,
+    A: ::futures::sink::Sink<__Item>,
+    B: ::futures::sink::Sink<__Item, Error = <A as ::futures::sink::Sink>::Error>,
 {
     type Error = <A as ::futures::sink::Sink>::Error;
 
@@ -42,7 +42,7 @@ where
     #[inline]
     fn start_send(
         self: ::core::pin::Pin<&mut Self>,
-        item: Item,
+        item: __Item,
     ) -> ::core::result::Result<(), Self::Error> {
         unsafe {
             match ::core::pin::Pin::get_unchecked_mut(self) {

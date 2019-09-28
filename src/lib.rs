@@ -3,8 +3,8 @@
 //! ## Examples
 //!
 //! ```rust
-//! use futures::future::{self, Future};
 //! use futures_enum::*;
+//! use std::future::Future;
 //!
 //! #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
 //! enum Either<A, B> {
@@ -14,16 +14,17 @@
 //!
 //! fn foo(x: i32) -> impl Future<Output = i32> {
 //!     if x < 0 {
-//!         Either::A(future::lazy(|_| 1))
+//!         Either::A(async { 1 })
 //!     } else {
-//!         Either::B(future::ready(x))
+//!         Either::B(async move { x })
 //!     }
 //! }
 //! ```
 //!
-//! See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
+//! futures-enum works well even if the dependency contains only sub-crates
+//! such as `futures-core`, `futures-io`, `futures-sink`, etc.
 //!
-//! futures-enum works well even if the dependency contains only sub-crates such as `futures-core`, `futures-io`, etc.
+//! See [auto_enums](https://github.com/taiki-e/auto_enums) for how to automate patterns like this.
 //!
 //! ## Supported traits
 //!
@@ -143,7 +144,7 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
         parse!(input),
         parse_quote!(#path::Sink),
         parse_quote! {
-            trait Sink<Item> {
+            trait Sink<__Item> {
                 type Error;
                 #[inline]
                 fn poll_ready(
@@ -153,7 +154,7 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
                 #[inline]
                 fn start_send(
                     self: ::core::pin::Pin<&mut Self>,
-                    item: Item,
+                    item: __Item,
                 ) -> ::core::result::Result<(), Self::Error>;
                 #[inline]
                 fn poll_flush(
