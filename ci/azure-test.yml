@@ -12,12 +12,23 @@ jobs:
       parameters:
         toolchain: ${{ parameters.toolchain }}
 
-    - script: |
-        cargo ${{ parameters.cmd }} --no-default-features
-        cargo ${{ parameters.cmd }}
-      displayName: cargo ${{ parameters.cmd }}
+    - ${{ if not(eq(parameters.cmd, 'test')) }}:
+      - script: |
+          cargo ${{ parameters.cmd }} --no-default-features
+          cargo ${{ parameters.cmd }}
+        displayName: cargo ${{ parameters.cmd }}
+
+    - ${{ if eq(parameters.cmd, 'test') }}:
+      - script: |
+          cargo ${{ parameters.cmd }} --tests --no-default-features
+          cargo ${{ parameters.cmd }} --tests
+        displayName: cargo ${{ parameters.cmd }} --tests
 
     - ${{ if eq(parameters.toolchain, 'nightly') }}:
+      - script: |
+          cargo ${{ parameters.cmd }}
+        displayName: cargo ${{ parameters.cmd }}
+
       # Refs: https://github.com/rust-lang/cargo/issues/5657
       - script: |
           cargo update -Zminimal-versions
