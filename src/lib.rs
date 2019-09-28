@@ -55,36 +55,41 @@ use proc_macro::TokenStream;
 use quote::{format_ident, quote};
 use syn::{parse_quote, Ident};
 
+fn default_crate_name() -> (Ident, Option<String>) {
+    (format_ident!("futures"), None)
+}
+
 #[cfg(feature = "renamed")]
 fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
     use find_crate::Manifest;
 
-    let f = || (format_ident!("futures"), None);
-
     let manifest = match Manifest::new().ok() {
         Some(manifest) => manifest,
-        None => return f(),
+        None => return default_crate_name(),
     };
 
-    manifest.find(|name| crate_names.iter().any(|s| *s == name)).map_or_else(f, |package| {
-        if package.is_original() {
-            (format_ident!("{}", package.name().replace("_preview", "")), None)
-        } else {
-            (format_ident!("{}", package.name()), Some(package.original_name().to_owned()))
-        }
-    })
+    manifest.find(|name| crate_names.iter().any(|s| *s == name)).map_or_else(
+        default_crate_name,
+        |package| {
+            if package.is_original() {
+                (format_ident!("{}", package.name.replace("_preview", "")), None)
+            } else {
+                (format_ident!("{}", &package.name), Some(package.original_name().to_owned()))
+            }
+        },
+    )
 }
 
 #[cfg(not(feature = "renamed"))]
 fn crate_name(_: &[&str]) -> (Ident, Option<String>) {
-    (format_ident!("futures"), None)
+    default_crate_name()
 }
 
 macro_rules! parse {
     ($input:expr) => {
         match syn::parse($input).and_then(|item: syn::ItemEnum| Data::new(&item)) {
             Ok(data) => data,
-            Err(err) => return TokenStream::from(err.to_compile_error()),
+            Err(e) => return TokenStream::from(e.to_compile_error()),
         }
     };
 }
@@ -96,6 +101,7 @@ pub fn derive_future(input: TokenStream) -> TokenStream {
         (::core::future::Future),
         trait Future {
             type Output;
+            #[inline]
             fn poll(
                 self: ::core::pin::Pin<&mut Self>,
                 cx: &mut ::core::task::Context<'_>,
@@ -130,14 +136,12 @@ pub fn derive_stream(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(Sink)]
 pub fn derive_sink(input: TokenStream) -> TokenStream {
-    let (path, original) = crate_name(&["futures-preview", "futures-sink-preview"]);
+    let (crate_, original) = crate_name(&["futures-preview", "futures-sink-preview"]);
 
-    let path = if path == "futures_sink"
-        || original.as_ref().map(String::as_str) == Some("futures-sink-preview")
-    {
-        quote!(::#path)
+    let path = if original.as_ref().map_or(false, |s| s == "futures-sink-preview") {
+        quote!(::#crate_)
     } else {
-        quote!(::#path::sink)
+        quote!(::#crate_::sink)
     };
 
     derive_trait!(
@@ -175,14 +179,12 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncRead)]
 pub fn derive_async_read(input: TokenStream) -> TokenStream {
-    let (path, original) = crate_name(&["futures-preview", "futures-io-preview"]);
+    let (crate_, original) = crate_name(&["futures-preview", "futures-io-preview"]);
 
-    let path = if path == "futures_io"
-        || original.as_ref().map(String::as_str) == Some("futures-io-preview")
-    {
-        quote!(::#path)
+    let path = if original.as_ref().map_or(false, |s| s == "futures-io-preview") {
+        quote!(::#crate_)
     } else {
-        quote!(::#path::io)
+        quote!(::#crate_::io)
     };
 
     derive_trait!(
@@ -211,14 +213,12 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncWrite)]
 pub fn derive_async_write(input: TokenStream) -> TokenStream {
-    let (path, original) = crate_name(&["futures-preview", "futures-io-preview"]);
+    let (crate_, original) = crate_name(&["futures-preview", "futures-io-preview"]);
 
-    let path = if path == "futures_io"
-        || original.as_ref().map(String::as_str) == Some("futures-io-preview")
-    {
-        quote!(::#path)
+    let path = if original.as_ref().map_or(false, |s| s == "futures-io-preview") {
+        quote!(::#crate_)
     } else {
-        quote!(::#path::io)
+        quote!(::#crate_::io)
     };
 
     derive_trait!(
@@ -257,14 +257,12 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncSeek)]
 pub fn derive_async_seek(input: TokenStream) -> TokenStream {
-    let (path, original) = crate_name(&["futures-preview", "futures-io-preview"]);
+    let (crate_, original) = crate_name(&["futures-preview", "futures-io-preview"]);
 
-    let path = if path == "futures_io"
-        || original.as_ref().map(String::as_str) == Some("futures-io-preview")
-    {
-        quote!(::#path)
+    let path = if original.as_ref().map_or(false, |s| s == "futures-io-preview") {
+        quote!(::#crate_)
     } else {
-        quote!(::#path::io)
+        quote!(::#crate_::io)
     };
 
     derive_trait!(
@@ -287,14 +285,12 @@ pub fn derive_async_seek(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncBufRead)]
 pub fn derive_async_buf_read(input: TokenStream) -> TokenStream {
-    let (path, original) = crate_name(&["futures-preview", "futures-io-preview"]);
+    let (crate_, original) = crate_name(&["futures-preview", "futures-io-preview"]);
 
-    let path = if path == "futures_io"
-        || original.as_ref().map(String::as_str) == Some("futures-io-preview")
-    {
-        quote!(::#path)
+    let path = if original.as_ref().map_or(false, |s| s == "futures-io-preview") {
+        quote!(::#crate_)
     } else {
-        quote!(::#path::io)
+        quote!(::#crate_::io)
     };
 
     derive_trait!(
