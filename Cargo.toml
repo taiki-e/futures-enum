@@ -25,7 +25,7 @@ renamed = ["find-crate"]
 # io-compat = []
 
 [dependencies]
-derive_utils = "0.9"
+derive_utils = "0.9.1"
 find-crate = { version = "0.4", optional = true }
 quote = "1.0"
 syn = { version = "1.0", features = ["full"] }
