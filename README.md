@@ -25,7 +25,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-futures-enum = "0.1.10"
+futures-enum = "0.1.11"
 futures-preview = "0.3.0-alpha.19"
 ```
 
