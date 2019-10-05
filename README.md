@@ -1,13 +1,10 @@
 # futures-enum
 
-[![ci-badge]][ci-url]
 [![crates-badge]][crates-url]
 [![docs-badge]][docs-url]
 [![license-badge]][license]
 [![rustc-badge]][rustc-url]
 
-[ci-badge]: https://github.com/taiki-e/futures-enum/workflows/ci/badge.svg
-[ci-url]: https://github.com/taiki-e/futures-enum/actions?workflow=ci
 [crates-badge]: https://img.shields.io/crates/v/futures-enum.svg
 [crates-url]: https://crates.io/crates/futures-enum/
 [docs-badge]: https://docs.rs/futures-enum/badge.svg
