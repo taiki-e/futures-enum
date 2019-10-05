@@ -1,16 +1,19 @@
 # futures-enum
 
-[![Crates.io][crates-version-badge]][crates-url]
-[![Docs.rs][docs-badge]][docs-url]
-[![License][crates-license-badge]][crates-url]
-[![Minimum supported Rust version][rustc-badge]][rustc-url]
+[![ci-badge]][ci-url]
+[![crates-badge]][crates-url]
+[![docs-badge]][docs-url]
+[![license-badge]][license]
+[![rustc-badge]][rustc-url]
 
-[crates-version-badge]: https://img.shields.io/crates/v/futures-enum.svg
-[crates-license-badge]: https://img.shields.io/crates/l/futures-enum.svg
+[ci-badge]: https://github.com/taiki-e/futures-enum/workflows/ci/badge.svg
+[ci-url]: https://github.com/taiki-e/futures-enum/actions?workflow=ci
 [crates-badge]: https://img.shields.io/crates/v/futures-enum.svg
 [crates-url]: https://crates.io/crates/futures-enum/
 [docs-badge]: https://docs.rs/futures-enum/badge.svg
 [docs-url]: https://docs.rs/futures-enum/
+[license-badge]: https://img.shields.io/crates/l/futures-enum.svg
+[license]: #license
 [rustc-badge]: https://img.shields.io/badge/rustc-1.36+-lightgray.svg
 [rustc-url]: https://blog.rust-lang.org/2019/07/04/Rust-1.36.0.html
 
