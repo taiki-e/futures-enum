@@ -13,11 +13,7 @@
 //! }
 //!
 //! fn foo(x: i32) -> impl Future<Output = i32> {
-//!     if x < 0 {
-//!         Either::A(async { 1 })
-//!     } else {
-//!         Either::B(async move { x })
-//!     }
+//!     if x < 0 { Either::A(async { 1 }) } else { Either::B(async move { x }) }
 //! }
 //! ```
 //!
@@ -35,7 +31,6 @@
 //! * [`AsyncWrite`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
 //! * [`AsyncSeek`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
 //! * [`AsyncBufRead`](https://rust-lang-nursery.github.io/futures-api-docs/0.3.0-alpha.19/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
-//!
 
 #![recursion_limit = "256"]
 #![doc(html_root_url = "https://docs.rs/futures-enum/0.1.11")]
