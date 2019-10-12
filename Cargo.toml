@@ -20,9 +20,6 @@ proc-macro = true
 default = ["renamed"]
 # Enable to allow using this crate as a renamed dependency
 renamed = ["find-crate"]
-# TODO
-# compat = []
-# io-compat = []
 
 [dependencies]
 derive_utils = "0.9.1"
@@ -31,7 +28,8 @@ quote = "1.0"
 syn = "1.0"
 
 [dev-dependencies]
-futureio = { version = "=0.3.0-alpha.19", package = "futures-io-preview" }
-futures-sink-preview = { version = "=0.3.0-alpha.19", package = "futures-sink-preview" }
-futures-core-preview = { version = "=0.3.0-alpha.19" }
-futures-preview = { version = "=0.3.0-alpha.19" }
+futureio = { version = "0.3.0-alpha.19", package = "futures-io-preview" }
+futures-sink-preview = { version = "0.3.0-alpha.19", package = "futures-sink-preview" }
+futures-core-preview = "0.3.0-alpha.19"
+futures-util-preview = "0.3.0-alpha.19"
+futures-preview = "0.3.0-alpha.19"
