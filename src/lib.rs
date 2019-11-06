@@ -25,12 +25,12 @@
 //! ## Supported traits
 //!
 //! * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/future.md)
-//! * [`Stream`](https://docs.rs/futures-preview/0.3.0-alpha.19/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)
-//! * [`Sink`](https://docs.rs/futures-preview/0.3.0-alpha.19/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
-//! * [`AsyncRead`](https://docs.rs/futures-preview/0.3.0-alpha.19/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
-//! * [`AsyncWrite`](https://docs.rs/futures-preview/0.3.0-alpha.19/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
-//! * [`AsyncSeek`](https://docs.rs/futures-preview/0.3.0-alpha.19/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
-//! * [`AsyncBufRead`](https://docs.rs/futures-preview/0.3.0-alpha.19/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
+//! * [`Stream`](https://docs.rs/futures/0.3-alpha.19/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)
+//! * [`Sink`](https://docs.rs/futures/0.3-alpha.19/futures/sink/trait.Sink.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/sink.md)
+//! * [`AsyncRead`](https://docs.rs/futures/0.3-alpha.19/futures/io/trait.AsyncRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_read.md)
+//! * [`AsyncWrite`](https://docs.rs/futures/0.3-alpha.19/futures/io/trait.AsyncWrite.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_write.md)
+//! * [`AsyncSeek`](https://docs.rs/futures/0.3-alpha.19/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
+//! * [`AsyncBufRead`](https://docs.rs/futures/0.3-alpha.19/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
 
 #![recursion_limit = "256"]
 #![doc(html_root_url = "https://docs.rs/futures-enum/0.1.11")]
@@ -62,16 +62,22 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
         None => return default_crate_name(),
     };
 
-    manifest.find(|name| crate_names.iter().any(|s| *s == name)).map_or_else(
-        default_crate_name,
-        |package| {
+    manifest
+        .find2(|name, version| {
+            if name == "futures" {
+                let mut pieces = version.split('.');
+                (|| pieces.next()?.parse().ok())() == Some(3)
+            } else {
+                crate_names.iter().any(|s| *s == name)
+            }
+        })
+        .map_or_else(default_crate_name, |package| {
             if package.is_original() {
-                (format_ident!("{}", package.name.replace("_preview", "")), None)
+                (format_ident!("{}", package.name), None)
             } else {
                 (format_ident!("{}", &package.name), Some(package.original_name().to_owned()))
             }
-        },
-    )
+        })
 }
 
 #[cfg(not(feature = "renamed"))]
@@ -106,8 +112,7 @@ pub fn derive_future(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(Stream)]
 pub fn derive_stream(input: TokenStream) -> TokenStream {
-    let (crate_, _) =
-        crate_name(&["futures-preview", "futures-util-preview", "futures-core-preview"]);
+    let (crate_, _) = crate_name(&["futures", "futures-util", "futures-core"]);
 
     derive_trait!(
         parse!(input),
@@ -131,9 +136,9 @@ pub fn derive_stream(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(Sink)]
 pub fn derive_sink(input: TokenStream) -> TokenStream {
-    let (crate_, original) = crate_name(&["futures-preview", "futures-sink-preview"]);
+    let (crate_, original) = crate_name(&["futures", "futures-sink"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-sink-preview") {
+    let path = if original.as_ref().map_or(false, |s| s == "futures-sink") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::sink)
@@ -174,9 +179,9 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncRead)]
 pub fn derive_async_read(input: TokenStream) -> TokenStream {
-    let (crate_, original) = crate_name(&["futures-preview", "futures-io-preview"]);
+    let (crate_, original) = crate_name(&["futures", "futures-io"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-io-preview") {
+    let path = if original.as_ref().map_or(false, |s| s == "futures-io") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::io)
@@ -208,9 +213,9 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncWrite)]
 pub fn derive_async_write(input: TokenStream) -> TokenStream {
-    let (crate_, original) = crate_name(&["futures-preview", "futures-io-preview"]);
+    let (crate_, original) = crate_name(&["futures", "futures-io"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-io-preview") {
+    let path = if original.as_ref().map_or(false, |s| s == "futures-io") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::io)
@@ -252,9 +257,9 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncSeek)]
 pub fn derive_async_seek(input: TokenStream) -> TokenStream {
-    let (crate_, original) = crate_name(&["futures-preview", "futures-io-preview"]);
+    let (crate_, original) = crate_name(&["futures", "futures-io"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-io-preview") {
+    let path = if original.as_ref().map_or(false, |s| s == "futures-io") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::io)
@@ -280,9 +285,9 @@ pub fn derive_async_seek(input: TokenStream) -> TokenStream {
 
 #[proc_macro_derive(AsyncBufRead)]
 pub fn derive_async_buf_read(input: TokenStream) -> TokenStream {
-    let (crate_, original) = crate_name(&["futures-preview", "futures-io-preview"]);
+    let (crate_, original) = crate_name(&["futures", "futures-io"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-io-preview") {
+    let path = if original.as_ref().map_or(false, |s| s == "futures-io") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::io)
