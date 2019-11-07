@@ -42,13 +42,10 @@ jobs:
       - name: cargo check
         if: matrix.rust == '1.36.0'
         run: |
+          cargo check --no-default-features
           cargo check
-      - name: cargo test --tests
-        if: matrix.rust == 'stable'
-        run: |
-          cargo test --tests
       - name: cargo test
-        if: matrix.rust != '1.36.0' && matrix.rust != 'stable'
+        if: matrix.rust != '1.36.0'
         run: |
           cargo test --no-default-features
           cargo test
