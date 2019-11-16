@@ -13,6 +13,8 @@ description = """
 #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)] for enums.
 """
 
+[workspace]
+
 [lib]
 proc-macro = true
 
