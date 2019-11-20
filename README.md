@@ -6,9 +6,9 @@
 [![rustc-badge]][rustc-url]
 
 [crates-badge]: https://img.shields.io/crates/v/futures-enum.svg
-[crates-url]: https://crates.io/crates/futures-enum/
+[crates-url]: https://crates.io/crates/futures-enum
 [docs-badge]: https://docs.rs/futures-enum/badge.svg
-[docs-url]: https://docs.rs/futures-enum/
+[docs-url]: https://docs.rs/futures-enum
 [license-badge]: https://img.shields.io/crates/l/futures-enum.svg
 [license]: #license
 [rustc-badge]: https://img.shields.io/badge/rustc-1.36+-lightgray.svg
