@@ -118,22 +118,18 @@ pub fn derive_future(input: TokenStream) -> TokenStream {
 pub fn derive_stream(input: TokenStream) -> TokenStream {
     let (crate_, _) = crate_name(&["futures", "futures-util", "futures-core"]);
 
-    derive_trait!(
-        parse!(input),
-        parse_quote!(::#crate_::stream::Stream),
-        parse_quote! {
-            trait Stream {
-                type Item;
-                #[inline]
-                fn poll_next(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::option::Option<Self::Item>>;
-                #[inline]
-                fn size_hint(&self) -> (usize, ::core::option::Option<usize>);
-            }
-        },
-    )
+    derive_trait!(parse!(input), parse_quote!(::#crate_::stream::Stream), parse_quote! {
+        trait Stream {
+            type Item;
+            #[inline]
+            fn poll_next(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+            ) -> ::core::task::Poll<::core::option::Option<Self::Item>>;
+            #[inline]
+            fn size_hint(&self) -> (usize, ::core::option::Option<usize>);
+        }
+    },)
     .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
@@ -148,35 +144,31 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
         quote!(::#crate_::sink)
     };
 
-    derive_trait!(
-        parse!(input),
-        parse_quote!(#path::Sink),
-        parse_quote! {
-            trait Sink<__Item> {
-                type Error;
-                #[inline]
-                fn poll_ready(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
-                #[inline]
-                fn start_send(
-                    self: ::core::pin::Pin<&mut Self>,
-                    item: __Item,
-                ) -> ::core::result::Result<(), Self::Error>;
-                #[inline]
-                fn poll_flush(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
-                #[inline]
-                fn poll_close(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
-            }
-        },
-    )
+    derive_trait!(parse!(input), parse_quote!(#path::Sink), parse_quote! {
+        trait Sink<__Item> {
+            type Error;
+            #[inline]
+            fn poll_ready(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+            ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
+            #[inline]
+            fn start_send(
+                self: ::core::pin::Pin<&mut Self>,
+                item: __Item,
+            ) -> ::core::result::Result<(), Self::Error>;
+            #[inline]
+            fn poll_flush(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+            ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
+            #[inline]
+            fn poll_close(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+            ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
+        }
+    },)
     .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
@@ -191,26 +183,22 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
         quote!(::#crate_::io)
     };
 
-    derive_trait!(
-        parse!(input),
-        parse_quote!(#path::AsyncRead),
-        parse_quote! {
-            trait AsyncRead {
-                #[inline]
-                fn poll_read(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                    buf: &mut [u8],
-                ) -> ::core::task::Poll<::std::io::Result<usize>>;
-                #[inline]
-                fn poll_read_vectored(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                    bufs: &mut [::std::io::IoSliceMut<'_>],
-                ) -> ::core::task::Poll<::std::io::Result<usize>>;
-            }
-        },
-    )
+    derive_trait!(parse!(input), parse_quote!(#path::AsyncRead), parse_quote! {
+        trait AsyncRead {
+            #[inline]
+            fn poll_read(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+                buf: &mut [u8],
+            ) -> ::core::task::Poll<::std::io::Result<usize>>;
+            #[inline]
+            fn poll_read_vectored(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+                bufs: &mut [::std::io::IoSliceMut<'_>],
+            ) -> ::core::task::Poll<::std::io::Result<usize>>;
+        }
+    },)
     .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
@@ -225,36 +213,32 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
         quote!(::#crate_::io)
     };
 
-    derive_trait!(
-        parse!(input),
-        parse_quote!(#path::AsyncWrite),
-        parse_quote! {
-            trait AsyncWrite {
-                #[inline]
-                fn poll_write(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                    buf: &[u8],
-                ) -> ::core::task::Poll<::std::io::Result<usize>>;
-                #[inline]
-                fn poll_write_vectored(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                    bufs: &[::std::io::IoSlice<'_>],
-                ) -> ::core::task::Poll<::std::io::Result<usize>>;
-                #[inline]
-                fn poll_flush(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::std::io::Result<()>>;
-                #[inline]
-                fn poll_close(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::std::io::Result<()>>;
-            }
-        },
-    )
+    derive_trait!(parse!(input), parse_quote!(#path::AsyncWrite), parse_quote! {
+        trait AsyncWrite {
+            #[inline]
+            fn poll_write(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+                buf: &[u8],
+            ) -> ::core::task::Poll<::std::io::Result<usize>>;
+            #[inline]
+            fn poll_write_vectored(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+                bufs: &[::std::io::IoSlice<'_>],
+            ) -> ::core::task::Poll<::std::io::Result<usize>>;
+            #[inline]
+            fn poll_flush(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+            ) -> ::core::task::Poll<::std::io::Result<()>>;
+            #[inline]
+            fn poll_close(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+            ) -> ::core::task::Poll<::std::io::Result<()>>;
+        }
+    },)
     .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
@@ -269,20 +253,16 @@ pub fn derive_async_seek(input: TokenStream) -> TokenStream {
         quote!(::#crate_::io)
     };
 
-    derive_trait!(
-        parse!(input),
-        parse_quote!(#path::AsyncSeek),
-        parse_quote! {
-            trait AsyncSeek {
-                #[inline]
-                fn poll_seek(
-                    self: ::core::pin::Pin<&mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                    pos: ::std::io::SeekFrom,
-                ) -> ::core::task::Poll<::std::io::Result<u64>>;
-            }
-        },
-    )
+    derive_trait!(parse!(input), parse_quote!(#path::AsyncSeek), parse_quote! {
+        trait AsyncSeek {
+            #[inline]
+            fn poll_seek(
+                self: ::core::pin::Pin<&mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+                pos: ::std::io::SeekFrom,
+            ) -> ::core::task::Poll<::std::io::Result<u64>>;
+        }
+    },)
     .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
@@ -297,21 +277,17 @@ pub fn derive_async_buf_read(input: TokenStream) -> TokenStream {
         quote!(::#crate_::io)
     };
 
-    derive_trait!(
-        parse!(input),
-        parse_quote!(#path::AsyncBufRead),
-        parse_quote! {
-            trait AsyncBufRead {
-                #[inline]
-                fn poll_fill_buf<'__a>(
-                    self: ::core::pin::Pin<&'__a mut Self>,
-                    cx: &mut ::core::task::Context<'_>,
-                ) -> ::core::task::Poll<::std::io::Result<&'__a [u8]>>;
-                #[inline]
-                fn consume(self: ::core::pin::Pin<&mut Self>, amt: usize);
-            }
-        },
-    )
+    derive_trait!(parse!(input), parse_quote!(#path::AsyncBufRead), parse_quote! {
+        trait AsyncBufRead {
+            #[inline]
+            fn poll_fill_buf<'__a>(
+                self: ::core::pin::Pin<&'__a mut Self>,
+                cx: &mut ::core::task::Context<'_>,
+            ) -> ::core::task::Poll<::std::io::Result<&'__a [u8]>>;
+            #[inline]
+            fn consume(self: ::core::pin::Pin<&mut Self>, amt: usize);
+        }
+    },)
     .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
