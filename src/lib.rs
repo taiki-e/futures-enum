@@ -33,7 +33,7 @@
 //! * [`AsyncBufRead`](https://docs.rs/futures/0.3-alpha.19/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
 
 #![recursion_limit = "256"]
-#![doc(html_root_url = "https://docs.rs/futures-enum/0.1.12")]
+#![doc(html_root_url = "https://docs.rs/futures-enum/0.1.13")]
 #![doc(test(
     no_crate_inject,
     attr(deny(warnings, rust_2018_idioms, single_use_lifetimes), allow(dead_code))

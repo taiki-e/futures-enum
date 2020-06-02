@@ -9,7 +9,7 @@
 [crates-url]: https://crates.io/crates/futures-enum
 [docs-badge]: https://docs.rs/futures-enum/badge.svg
 [docs-url]: https://docs.rs/futures-enum
-[license-badge]: https://img.shields.io/crates/l/futures-enum.svg
+[license-badge]: https://img.shields.io/badge/license-Apache--2.0%20OR%20MIT-blue.svg
 [license]: #license
 [rustc-badge]: https://img.shields.io/badge/rustc-1.36+-lightgray.svg
 [rustc-url]: https://blog.rust-lang.org/2019/07/04/Rust-1.36.0.html
@@ -22,7 +22,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-futures-enum = "0.1.12"
+futures-enum = "0.1.13"
 futures = "0.3"
 ```
 
