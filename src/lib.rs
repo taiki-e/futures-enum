@@ -1,6 +1,6 @@
 //! \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
 //!
-//! ## Examples
+//! # Examples
 //!
 //! ```rust
 //! use futures_enum::*;
@@ -22,7 +22,7 @@
 //!
 //! See [auto_enums](https://github.com/taiki-e/auto_enums) crate for how to automate patterns like this.
 //!
-//! ## Supported traits
+//! # Supported traits
 //!
 //! * [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/future.md)
 //! * [`Stream`](https://docs.rs/futures/0.3-alpha.19/futures/stream/trait.Stream.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/stream.md)

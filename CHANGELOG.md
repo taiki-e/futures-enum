@@ -70,7 +70,7 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ## [0.1.1] - 2019-02-03
 
-* Improved documentation.
+* Documentation improvements.
 
 ## [0.1.0] - 2019-02-02
 
