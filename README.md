@@ -63,6 +63,18 @@ See [auto_enums](https://github.com/taiki-e/auto_enums) crate for how to automat
 * [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [generated code](doc/async_seek.md)
 * [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [generated code](doc/async_buf_read.md)
 
+## Related Projects
+
+* [auto_enums]: A library for to allow multiple return types by automatically generated enum.
+* [derive_utils]: A procedural macro helper for easily writing [derives macros][proc-macro-derive] for enums.
+* [io-enum]: \#\[derive(Read, Write, Seek, BufRead)\] for enums.
+* [iter-enum]: \#\[derive(Iterator, DoubleEndedIterator, ExactSizeIterator, Extend)\] for enums.
+
+[auto_enums]: https://github.com/taiki-e/auto_enums
+[derive_utils]: https://github.com/taiki-e/derive_utils
+[io-enum]: https://github.com/taiki-e/io-enum
+[iter-enum]: https://github.com/taiki-e/iter-enum
+
 ## License
 
 Licensed under either of
