@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [0.1.14] - 2020-09-07
+
+* Updated `find-crate` to 0.6.
+
 ## [0.1.13] - 2020-06-02
 
 * Updated `derive_utils` to 0.10.
@@ -76,7 +80,8 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/futures-enum/compare/v0.1.13...HEAD
+[Unreleased]: https://github.com/taiki-e/futures-enum/compare/v0.1.14...HEAD
+[0.1.14]: https://github.com/taiki-e/futures-enum/compare/v0.1.13...v0.1.14
 [0.1.13]: https://github.com/taiki-e/futures-enum/compare/v0.1.12...v0.1.13
 [0.1.12]: https://github.com/taiki-e/futures-enum/compare/v0.1.11...v0.1.12
 [0.1.11]: https://github.com/taiki-e/futures-enum/compare/v0.1.10...v0.1.11
