@@ -15,6 +15,7 @@ description = """
 """
 
 [package.metadata.docs.rs]
+all-features = true
 targets = ["x86_64-unknown-linux-gnu"]
 
 [workspace]
