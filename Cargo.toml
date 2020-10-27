@@ -31,8 +31,8 @@ renamed = ["find-crate"]
 [dependencies]
 derive_utils = { version = "0.10" }
 find-crate = { version = "0.6", optional = true }
-quote = "1.0"
-syn = "1.0"
+quote = "1"
+syn = "1"
 
 [dev-dependencies]
 futures01 = { version = "0.1", package = "futures" }
