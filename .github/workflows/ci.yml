@@ -19,7 +19,6 @@ defaults:
 
 jobs:
   test:
-    name: test
     strategy:
       matrix:
         rust:
@@ -44,13 +43,10 @@ jobs:
           cargo test --no-default-features
           cargo test
       - run: cargo hack check --all --feature-powerset --no-dev-deps
-      - name: cargo check (minimal versions)
-        if: matrix.rust == 'nightly'
-        run: |
-          bash scripts/check-minimal-versions.sh
+      - if: matrix.rust == 'nightly'
+        run: bash scripts/check-minimal-versions.sh
 
   clippy:
-    name: clippy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -59,7 +55,6 @@ jobs:
       - run: cargo clippy --all --all-features --all-targets
 
   rustfmt:
-    name: rustfmt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -68,7 +63,6 @@ jobs:
       - run: cargo fmt --all -- --check
 
   rustdoc:
-    name: rustdoc
     env:
       RUSTDOCFLAGS: -Dwarnings
     runs-on: ubuntu-latest
@@ -79,7 +73,6 @@ jobs:
       - run: cargo doc --no-deps --all --all-features
 
   shellcheck:
-    name: shellcheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
