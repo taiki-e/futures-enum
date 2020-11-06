@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+* Update `derive_utils` to 0.11.
+
 ## [0.1.14] - 2020-09-07
 
 * Updated `find-crate` to 0.6.

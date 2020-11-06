@@ -132,7 +132,6 @@ pub fn derive_stream(input: TokenStream) -> TokenStream {
             }
         },
     )
-    .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
 
@@ -170,7 +169,6 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
             ) -> ::core::task::Poll<::core::result::Result<(), Self::Error>>;
         }
     })
-    .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
 
@@ -200,7 +198,6 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
             ) -> ::core::task::Poll<::std::io::Result<usize>>;
         }
     })
-    .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
 
@@ -240,7 +237,6 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
             ) -> ::core::task::Poll<::std::io::Result<()>>;
         }
     })
-    .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
 
@@ -264,7 +260,6 @@ pub fn derive_async_seek(input: TokenStream) -> TokenStream {
             ) -> ::core::task::Poll<::std::io::Result<u64>>;
         }
     })
-    .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
 
@@ -294,6 +289,5 @@ pub fn derive_async_buf_read(input: TokenStream) -> TokenStream {
             }
         },
     )
-    .unwrap_or_else(|e| e.to_compile_error())
     .into()
 }
