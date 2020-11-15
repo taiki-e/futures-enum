@@ -1,0 +1,13 @@
+[package]
+name = "doctest"
+version = "0.0.0"
+authors = ["Taiki Endo <te316e89@gmail.com>"]
+edition = "2018"
+publish = false
+
+[lib]
+path = "lib.rs"
+
+[dev-dependencies]
+futures-enum = { path = "../.." }
+futures = { version = "0.3", default-features = false, features = ["std"] }

@@ -42,9 +42,9 @@ jobs:
       - if: matrix.rust != '1.36.0'
         run: |
           cargo test --no-default-features
-          cargo test
+          cargo test --all
       - run: cargo hack check --all --feature-powerset --no-dev-deps
-      - if: matrix.rust == 'nightly'
+      - if: startsWith(matrix.rust, 'nightly')
         run: bash scripts/check-minimal-versions.sh
 
   clippy:
