@@ -32,7 +32,6 @@
 //! * [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_seek.md)
 //! * [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [generated code](https://github.com/taiki-e/futures-enum/blob/master/doc/async_buf_read.md)
 
-#![doc(html_root_url = "https://docs.rs/futures-enum/0.1.15")]
 #![doc(test(
     no_crate_inject,
     attr(deny(warnings, rust_2018_idioms, single_use_lifetimes), allow(dead_code))
