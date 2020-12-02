@@ -38,8 +38,8 @@ jobs:
       - run: cargo install cargo-hack
       - if: matrix.rust == '1.36.0'
         run: |
-          cargo check --no-default-features
-          cargo check
+          cargo build --no-default-features
+          cargo build
       - if: matrix.rust != '1.36.0'
         run: |
           cargo test --no-default-features
