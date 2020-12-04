@@ -25,7 +25,7 @@ jobs:
         rust:
           # This is the minimum supported Rust version of this crate.
           # When updating this, the reminder to update the minimum supported Rust version in README.md.
-          - 1.36.0
+          - 1.36
           - stable
           - beta
           - nightly
@@ -36,11 +36,11 @@ jobs:
         with:
           toolchain: ${{ matrix.rust }}
       - run: cargo install cargo-hack
-      - if: matrix.rust == '1.36.0'
+      - if: matrix.rust == '1.36'
         run: |
           cargo build --no-default-features
           cargo build
-      - if: matrix.rust != '1.36.0'
+      - if: matrix.rust != '1.36'
         run: |
           cargo test --no-default-features
           cargo test --all
