@@ -41,9 +41,11 @@ fn foo(x: i32) -> impl Future<Output = i32> {
 }
 ```
 
-futures-enum works well even if the dependency contains only sub-crates such as `futures-core`, `futures-io`, `futures-sink`, etc.
+futures-enum works well even if the dependency contains only sub-crates such
+as `futures-core`, `futures-io`, `futures-sink`, etc.
 
-See [auto_enums](https://github.com/taiki-e/auto_enums) crate for how to automate patterns like this.
+See [auto_enums](https://github.com/taiki-e/auto_enums) crate for how to
+automate patterns like this.
 
 ## Supported traits
 
@@ -69,6 +71,9 @@ See [auto_enums](https://github.com/taiki-e/auto_enums) crate for how to automat
 
 ## License
 
-Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT license](LICENSE-MIT) at your option.
+Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or
+[MIT license](LICENSE-MIT) at your option.
 
-Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall
+be dual licensed as above, without any additional terms or conditions.

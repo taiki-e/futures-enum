@@ -17,10 +17,11 @@
 //! }
 //! ```
 //!
-//! futures-enum works well even if the dependency contains only sub-crates
-//! such as `futures-core`, `futures-io`, `futures-sink`, etc.
+//! futures-enum works well even if the dependency contains only sub-crates such
+//! as `futures-core`, `futures-io`, `futures-sink`, etc.
 //!
-//! See [auto_enums](https://github.com/taiki-e/auto_enums) crate for how to automate patterns like this.
+//! See [auto_enums](https://github.com/taiki-e/auto_enums) crate for how to
+//! automate patterns like this.
 //!
 //! # Supported traits
 //!
