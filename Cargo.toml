@@ -1,6 +1,6 @@
 [package]
 name = "futures-enum"
-version = "0.1.15"
+version = "0.1.16"
 authors = ["Taiki Endo <te316e89@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0 OR MIT"
@@ -36,9 +36,9 @@ quote = "1"
 syn = "1"
 
 [dev-dependencies]
-futures01 = { version = "0.1", package = "futures" }
-futureio = { version = "0.3", package = "futures-io" }
-futures-sink = { version = "0.3", package = "futures-sink" }
+futures01 = { package = "futures", version = "0.1" }
+futureio = { package = "futures-io", version = "0.3" }
+futures-sink = { package = "futures-sink", version = "0.3" }
 futures-core = "0.3"
 futures-util = { version = "0.3", default-features = false, features = ["std"] }
 futures = { version = "0.3", default-features = false, features = ["std"] }
