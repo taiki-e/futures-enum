@@ -49,20 +49,20 @@ automate patterns like this.
 
 ## Supported traits
 
-* [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](doc/future.md)
-* [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [generated code](doc/stream.md)
-* [`Sink`](https://docs.rs/futures/0.3/futures/sink/trait.Sink.html) - [generated code](doc/sink.md)
-* [`AsyncRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncRead.html) - [generated code](doc/async_read.md)
-* [`AsyncWrite`](https://docs.rs/futures/0.3/futures/io/trait.AsyncWrite.html) - [generated code](doc/async_write.md)
-* [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [generated code](doc/async_seek.md)
-* [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [generated code](doc/async_buf_read.md)
+- [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](doc/future.md)
+- [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [generated code](doc/stream.md)
+- [`Sink`](https://docs.rs/futures/0.3/futures/sink/trait.Sink.html) - [generated code](doc/sink.md)
+- [`AsyncRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncRead.html) - [generated code](doc/async_read.md)
+- [`AsyncWrite`](https://docs.rs/futures/0.3/futures/io/trait.AsyncWrite.html) - [generated code](doc/async_write.md)
+- [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [generated code](doc/async_seek.md)
+- [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [generated code](doc/async_buf_read.md)
 
 ## Related Projects
 
-* [auto_enums]: A library for to allow multiple return types by automatically generated enum.
-* [derive_utils]: A procedural macro helper for easily writing [derives macros][proc-macro-derive] for enums.
-* [io-enum]: \#\[derive(Read, Write, Seek, BufRead)\] for enums.
-* [iter-enum]: \#\[derive(Iterator, DoubleEndedIterator, ExactSizeIterator, Extend)\] for enums.
+- [auto_enums]: A library for to allow multiple return types by automatically generated enum.
+- [derive_utils]: A procedural macro helper for easily writing [derives macros][proc-macro-derive] for enums.
+- [io-enum]: \#\[derive(Read, Write, Seek, BufRead)\] for enums.
+- [iter-enum]: \#\[derive(Iterator, DoubleEndedIterator, ExactSizeIterator, Extend)\] for enums.
 
 [auto_enums]: https://github.com/taiki-e/auto_enums
 [derive_utils]: https://github.com/taiki-e/derive_utils

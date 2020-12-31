@@ -88,7 +88,7 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 Initial release
 
-[unreleased]: https://github.com/taiki-e/futures-enum/compare/v0.1.16...HEAD
+[Unreleased]: https://github.com/taiki-e/futures-enum/compare/v0.1.16...HEAD
 [0.1.16]: https://github.com/taiki-e/futures-enum/compare/v0.1.15...v0.1.16
 [0.1.15]: https://github.com/taiki-e/futures-enum/compare/v0.1.14...v0.1.15
 [0.1.14]: https://github.com/taiki-e/futures-enum/compare/v0.1.13...v0.1.14
