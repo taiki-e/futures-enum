@@ -8,7 +8,6 @@ repository = "https://github.com/taiki-e/futures-enum"
 documentation = "https://docs.rs/futures-enum"
 keywords = ["futures", "async", "future", "derive", "enum"]
 categories = ["asynchronous", "rust-patterns"]
-readme = "README.md"
 exclude = ["/.github", "/scripts"]
 description = """
 #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)] for enums.
