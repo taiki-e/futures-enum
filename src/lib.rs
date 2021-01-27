@@ -3,8 +3,9 @@
 //! # Examples
 //!
 //! ```rust
-//! use futures_enum::*;
 //! use std::future::Future;
+//!
+//! use futures_enum::*;
 //!
 //! #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
 //! enum Either<A, B> {
