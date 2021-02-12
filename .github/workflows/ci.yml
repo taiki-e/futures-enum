@@ -37,8 +37,8 @@ jobs:
       - run: cargo test --no-default-features
       - run: cargo test --all
       - run: cargo hack check --all --ignore-private --feature-powerset --no-dev-deps
-      - if: startsWith(matrix.rust, 'nightly')
-        run: scripts/check-minimal-versions.sh
+      - run: scripts/check-minimal-versions.sh
+        if: startsWith(matrix.rust, 'nightly')
 
   build:
     strategy:
