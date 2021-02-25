@@ -28,7 +28,7 @@ default = ["renamed"]
 # Enable to allow using this crate as a renamed dependency
 renamed = ["find-crate"]
 
-# NB: futures-* are public dependencies.
+# Note: futures-* are public dependencies.
 [dependencies]
 derive_utils = { version = "0.11" }
 find-crate = { version = "0.6", optional = true }
