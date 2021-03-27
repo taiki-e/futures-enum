@@ -49,13 +49,13 @@ automate patterns like this.
 
 ## Supported traits
 
-- [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](doc/future.md)
-- [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [generated code](doc/stream.md)
-- [`Sink`](https://docs.rs/futures/0.3/futures/sink/trait.Sink.html) - [generated code](doc/sink.md)
-- [`AsyncRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncRead.html) - [generated code](doc/async_read.md)
-- [`AsyncWrite`](https://docs.rs/futures/0.3/futures/io/trait.AsyncWrite.html) - [generated code](doc/async_write.md)
-- [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [generated code](doc/async_seek.md)
-- [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [generated code](doc/async_buf_read.md)
+- [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](docs/future.md)
+- [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [generated code](docs/stream.md)
+- [`Sink`](https://docs.rs/futures/0.3/futures/sink/trait.Sink.html) - [generated code](docs/sink.md)
+- [`AsyncRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncRead.html) - [generated code](docs/async_read.md)
+- [`AsyncWrite`](https://docs.rs/futures/0.3/futures/io/trait.AsyncWrite.html) - [generated code](docs/async_write.md)
+- [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [generated code](docs/async_seek.md)
+- [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [generated code](docs/async_buf_read.md)
 
 ## Related Projects
 
