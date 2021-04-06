@@ -1,23 +1,8 @@
-# [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html)
-
-When deriving for enum like the following:
-
-```rust
-#[derive(Future)]
+use futures_enum::*;
 enum Enum<A, B> {
     A(A),
     B(B),
 }
-```
-
-Code like this will be generated:
-
-```rust
-enum Enum<A, B> {
-    A(A),
-    B(B),
-}
-
 #[allow(unsafe_code)]
 impl<A, B> ::core::future::Future for Enum<A, B>
 where
@@ -25,18 +10,17 @@ where
     B: ::core::future::Future<Output = <A as ::core::future::Future>::Output>,
 {
     type Output = <A as ::core::future::Future>::Output;
-
     #[inline]
     fn poll(
         self: ::core::pin::Pin<&mut Self>,
         cx: &mut ::core::task::Context<'_>,
     ) -> ::core::task::Poll<Self::Output> {
         unsafe {
-            match ::core::pin::Pin::get_unchecked_mut(self) {
+            match self.get_unchecked_mut() {
                 Enum::A(x) => ::core::future::Future::poll(::core::pin::Pin::new_unchecked(x), cx),
                 Enum::B(x) => ::core::future::Future::poll(::core::pin::Pin::new_unchecked(x), cx),
             }
         }
     }
 }
-```
+fn main() {}

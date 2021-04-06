@@ -44,18 +44,17 @@ fn foo(x: i32) -> impl Future<Output = i32> {
 futures-enum works well even if the dependency contains only sub-crates such
 as `futures-core`, `futures-io`, `futures-sink`, etc.
 
-See [auto_enums](https://github.com/taiki-e/auto_enums) crate for how to
-automate patterns like this.
+See [auto_enums] crate for how to automate patterns like this.
 
 ## Supported traits
 
-- [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [generated code](docs/future.md)
-- [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [generated code](docs/stream.md)
-- [`Sink`](https://docs.rs/futures/0.3/futures/sink/trait.Sink.html) - [generated code](docs/sink.md)
-- [`AsyncRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncRead.html) - [generated code](docs/async_read.md)
-- [`AsyncWrite`](https://docs.rs/futures/0.3/futures/io/trait.AsyncWrite.html) - [generated code](docs/async_write.md)
-- [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [generated code](docs/async_seek.md)
-- [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [generated code](docs/async_buf_read.md)
+- [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [example](tests/expand/future.rs) | [generated code](tests/expand/future.expanded.rs)
+- [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [example](tests/expand/stream.rs) | [generated code](tests/expand/stream.expanded.rs)
+- [`Sink`](https://docs.rs/futures/0.3/futures/sink/trait.Sink.html) - [example](tests/expand/sink.rs) | [generated code](tests/expand/sink.expanded.rs)
+- [`AsyncRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncRead.html) - [example](tests/expand/async_read.rs) | [generated code](tests/expand/async_read.expanded.rs)
+- [`AsyncWrite`](https://docs.rs/futures/0.3/futures/io/trait.AsyncWrite.html) - [example](tests/expand/async_write.rs) | [generated code](tests/expand/async_write.expanded.rs)
+- [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [example](tests/expand/async_seek.rs) | [generated code](tests/expand/async_seek.expanded.rs)
+- [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [example](tests/expand/async_buf_read.rs) | [generated code](tests/expand/async_buf_read.expanded.rs)
 
 ## Related Projects
 

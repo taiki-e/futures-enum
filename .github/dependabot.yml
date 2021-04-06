@@ -6,8 +6,6 @@ updates:
       interval: daily
     commit-message:
       prefix: ''
-    ignore:
-      - dependency-name: futures
     labels: []
   - package-ecosystem: github-actions
     directory: /
