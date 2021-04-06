@@ -31,14 +31,12 @@ renamed = ["find-crate"]
 # Note: futures-* are public dependencies.
 [dependencies]
 derive_utils = { version = "0.11" }
-find-crate = { version = "0.6", optional = true }
 quote = "1"
 syn = "1"
 
+find-crate = { version = "0.6", optional = true }
+
 [dev-dependencies]
-futures01 = { package = "futures", version = "0.1" }
-futureio = { package = "futures-io", version = "0.3" }
-futures-sink = { package = "futures-sink", version = "0.3" }
-futures-core = "0.3"
-futures-util = { version = "0.3", default-features = false, features = ["std"] }
 futures = { version = "0.3", default-features = false, features = ["std"] }
+macrotest = "1.0.8"
+rustversion = "1"
