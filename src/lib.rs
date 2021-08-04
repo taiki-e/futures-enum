@@ -14,7 +14,11 @@
 //! }
 //!
 //! fn foo(x: i32) -> impl Future<Output = i32> {
-//!     if x < 0 { Either::A(async { 1 }) } else { Either::B(async move { x }) }
+//!     if x < 0 {
+//!         Either::A(async { 1 })
+//!     } else {
+//!         Either::B(async move { x })
+//!     }
 //! }
 //! ```
 //!
