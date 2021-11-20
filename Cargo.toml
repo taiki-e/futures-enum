@@ -1,7 +1,6 @@
 [package]
 name = "futures-enum"
 version = "0.1.17"
-authors = ["Taiki Endo <te316e89@gmail.com>"]
 edition = "2018"
 rust-version = "1.36"
 license = "Apache-2.0 OR MIT"
