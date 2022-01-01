@@ -44,6 +44,7 @@ jobs:
         with:
           toolchain: ${{ matrix.rust }}
           component: rustfmt
+      - uses: taiki-e/install-action@cargo-hack
       - uses: dtolnay/install@cargo-expand
         if: startsWith(matrix.rust, 'nightly')
       - run: cargo test --no-default-features
