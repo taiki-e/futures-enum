@@ -37,5 +37,5 @@ find-crate = { version = "0.6", optional = true }
 
 [dev-dependencies]
 futures = { version = "0.3", default-features = false, features = ["std"] }
-macrotest = { git = "https://github.com/taiki-e/macrotest.git", rev = "f3d3aa5" } # https://github.com/eupn/macrotest/pull/69
+macrotest = { git = "https://github.com/taiki-e/macrotest.git", rev = "779cfa5" } # https://github.com/eupn/macrotest/pull/69
 rustversion = "1"
