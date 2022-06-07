@@ -44,7 +44,6 @@ jobs:
       - uses: taiki-e/github-actions/install-rust@main
         with:
           toolchain: ${{ matrix.rust }}
-          component: rustfmt
       - uses: taiki-e/install-action@cargo-hack
       - uses: dtolnay/install@cargo-expand
         if: startsWith(matrix.rust, 'nightly')
