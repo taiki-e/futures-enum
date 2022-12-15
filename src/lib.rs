@@ -50,6 +50,11 @@
 #![warn(rust_2018_idioms, single_use_lifetimes, unreachable_pub)]
 #![warn(clippy::pedantic)]
 
+#[cfg(doctest)]
+// https://github.com/rust-lang/rust/issues/82768
+#[cfg_attr(doctest, cfg_attr(doctest, doc = include_str!("../README.md")))]
+const _README: () = ();
+
 // older compilers require explicit `extern crate`.
 #[allow(unused_extern_crates)]
 extern crate proc_macro;

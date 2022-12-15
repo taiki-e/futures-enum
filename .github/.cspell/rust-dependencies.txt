@@ -3,7 +3,6 @@
 
 crate
 derive
-enum
 find
 futures
 macrotest
