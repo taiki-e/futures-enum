@@ -4,7 +4,7 @@
 [![docs.rs](https://img.shields.io/badge/docs.rs-futures--enum-blue?style=flat-square&logo=docs.rs)](https://docs.rs/futures-enum)
 [![license](https://img.shields.io/badge/license-Apache--2.0_OR_MIT-blue?style=flat-square)](#license)
 [![rustc](https://img.shields.io/badge/rustc-1.45+-blue?style=flat-square&logo=rust)](https://www.rust-lang.org)
-[![build status](https://img.shields.io/github/workflow/status/taiki-e/futures-enum/CI/main?style=flat-square&logo=github)](https://github.com/taiki-e/futures-enum/actions)
+[![build status](https://img.shields.io/github/actions/workflow/status/taiki-e/futures-enum/ci.yml?branch=main&style=flat-square&logo=github)](https://github.com/taiki-e/futures-enum/actions)
 
 \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
 
