@@ -1,7 +1,7 @@
 /*!
 \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
 
-# Examples
+## Examples
 
 ```rust
 use std::future::Future;
@@ -28,7 +28,7 @@ as `futures-core`, `futures-io`, `futures-sink`, etc.
 
 See [auto_enums] crate for how to automate patterns like this.
 
-# Supported traits
+## Supported traits
 
 - [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/future.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/future.expanded.rs)
 - [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/stream.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/stream.expanded.rs)
@@ -38,7 +38,18 @@ See [auto_enums] crate for how to automate patterns like this.
 - [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_seek.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_seek.expanded.rs)
 - [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_buf_read.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_buf_read.expanded.rs)
 
+## Related Projects
+
+- [auto_enums]: A library for to allow multiple return types by automatically generated enum.
+- [derive_utils]: A procedural macro helper for easily writing [derives macros][proc-macro-derive] for enums.
+- [io-enum]: \#\[derive(Read, Write, Seek, BufRead)\] for enums.
+- [iter-enum]: \#\[derive(Iterator, DoubleEndedIterator, ExactSizeIterator, Extend)\] for enums.
+
 [auto_enums]: https://github.com/taiki-e/auto_enums
+[derive_utils]: https://github.com/taiki-e/derive_utils
+[io-enum]: https://github.com/taiki-e/io-enum
+[iter-enum]: https://github.com/taiki-e/iter-enum
+[proc-macro-derive]: https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros
 */
 
 #![doc(test(
