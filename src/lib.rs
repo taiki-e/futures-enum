@@ -1,43 +1,45 @@
-//! \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
-//!
-//! # Examples
-//!
-//! ```rust
-//! use std::future::Future;
-//!
-//! use futures_enum::*;
-//!
-//! #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
-//! enum Either<A, B> {
-//!     A(A),
-//!     B(B),
-//! }
-//!
-//! fn foo(x: i32) -> impl Future<Output = i32> {
-//!     if x < 0 {
-//!         Either::A(async { 1 })
-//!     } else {
-//!         Either::B(async move { x })
-//!     }
-//! }
-//! ```
-//!
-//! futures-enum works well even if the dependency contains only sub-crates such
-//! as `futures-core`, `futures-io`, `futures-sink`, etc.
-//!
-//! See [auto_enums] crate for how to automate patterns like this.
-//!
-//! # Supported traits
-//!
-//! - [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/future.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/future.expanded.rs)
-//! - [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/stream.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/stream.expanded.rs)
-//! - [`Sink`](https://docs.rs/futures/0.3/futures/sink/trait.Sink.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/sink.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/sink.expanded.rs)
-//! - [`AsyncRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncRead.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_read.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_read.expanded.rs)
-//! - [`AsyncWrite`](https://docs.rs/futures/0.3/futures/io/trait.AsyncWrite.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_write.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_write.expanded.rs)
-//! - [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_seek.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_seek.expanded.rs)
-//! - [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_buf_read.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_buf_read.expanded.rs)
-//!
-//! [auto_enums]: https://github.com/taiki-e/auto_enums
+/*!
+\#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
+
+# Examples
+
+```rust
+use std::future::Future;
+
+use futures_enum::*;
+
+#[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
+enum Either<A, B> {
+    A(A),
+    B(B),
+}
+
+fn foo(x: i32) -> impl Future<Output = i32> {
+    if x < 0 {
+        Either::A(async { 1 })
+    } else {
+        Either::B(async move { x })
+    }
+}
+```
+
+futures-enum works well even if the dependency contains only sub-crates such
+as `futures-core`, `futures-io`, `futures-sink`, etc.
+
+See [auto_enums] crate for how to automate patterns like this.
+
+# Supported traits
+
+- [`Future`](https://doc.rust-lang.org/std/future/trait.Future.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/future.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/future.expanded.rs)
+- [`Stream`](https://docs.rs/futures/0.3/futures/stream/trait.Stream.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/stream.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/stream.expanded.rs)
+- [`Sink`](https://docs.rs/futures/0.3/futures/sink/trait.Sink.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/sink.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/sink.expanded.rs)
+- [`AsyncRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncRead.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_read.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_read.expanded.rs)
+- [`AsyncWrite`](https://docs.rs/futures/0.3/futures/io/trait.AsyncWrite.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_write.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_write.expanded.rs)
+- [`AsyncSeek`](https://docs.rs/futures/0.3/futures/io/trait.AsyncSeek.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_seek.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_seek.expanded.rs)
+- [`AsyncBufRead`](https://docs.rs/futures/0.3/futures/io/trait.AsyncBufRead.html) - [example](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_buf_read.rs) | [generated code](https://github.com/taiki-e/futures-enum/blob/HEAD/tests/expand/async_buf_read.expanded.rs)
+
+[auto_enums]: https://github.com/taiki-e/auto_enums
+*/
 
 #![doc(test(
     no_crate_inject,
