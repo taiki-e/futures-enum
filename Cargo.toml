@@ -28,7 +28,7 @@ renamed = ["find-crate"]
 
 # Note: futures-* are public dependencies.
 [dependencies]
-derive_utils = { version = "0.11" }
+derive_utils = { version = "0.13" }
 quote = "1"
 syn = "1"
 
