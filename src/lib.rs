@@ -1,5 +1,18 @@
 /*!
+<!-- tidy:crate-doc:start -->
 \#\[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)\] for enums.
+
+## Usage
+
+Add this to your `Cargo.toml`:
+
+```toml
+[dependencies]
+futures-enum = "0.1.16"
+futures = "0.3"
+```
+
+*Compiler support: requires rustc 1.45+*
 
 ## Examples
 
@@ -50,6 +63,8 @@ See [auto_enums] crate for how to automate patterns like this.
 [io-enum]: https://github.com/taiki-e/io-enum
 [iter-enum]: https://github.com/taiki-e/iter-enum
 [proc-macro-derive]: https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros
+
+<!-- tidy:crate-doc:end -->
 */
 
 #![doc(test(
@@ -62,11 +77,6 @@ See [auto_enums] crate for how to automate patterns like this.
 #![forbid(unsafe_code)]
 #![warn(rust_2018_idioms, single_use_lifetimes, unreachable_pub)]
 #![warn(clippy::pedantic)]
-
-#[cfg(doctest)]
-// https://github.com/rust-lang/rust/issues/82768
-#[cfg_attr(doctest, cfg_attr(doctest, doc = include_str!("../README.md")))]
-const _README: () = ();
 
 // older compilers require explicit `extern crate`.
 #[allow(unused_extern_crates)]
