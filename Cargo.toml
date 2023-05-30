@@ -2,7 +2,7 @@
 name = "futures-enum"
 version = "0.1.17"
 edition = "2018"
-rust-version = "1.45"
+rust-version = "1.56"
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/taiki-e/futures-enum"
 keywords = ["async", "future", "futures", "derive", "enum"]
