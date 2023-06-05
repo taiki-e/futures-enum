@@ -7,7 +7,7 @@ license = "Apache-2.0 OR MIT"
 repository = "https://github.com/taiki-e/futures-enum"
 keywords = ["async", "future", "futures", "derive", "enum"]
 categories = ["asynchronous", "no-std", "rust-patterns"]
-exclude = ["/.*", "/tools"]
+exclude = ["/.*", "/tools", "/DEVELOPMENT.md"]
 description = """
 #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)] for enums.
 """
