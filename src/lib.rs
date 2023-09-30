@@ -77,8 +77,7 @@ See [auto_enums] crate for how to automate patterns like this.
     )
 ))]
 #![forbid(unsafe_code)]
-#![warn(rust_2018_idioms, single_use_lifetimes, unreachable_pub)]
-#![warn(clippy::pedantic)]
+#![warn(rust_2018_idioms, single_use_lifetimes, unreachable_pub, clippy::pedantic)]
 #![allow(clippy::doc_markdown)]
 
 // older compilers require explicit `extern crate`.
