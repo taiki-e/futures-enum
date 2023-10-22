@@ -67,7 +67,7 @@ jobs:
       - run: cargo test --no-default-features
       - run: cargo test --workspace --all-features
       - run: cargo hack build --workspace --no-private --feature-powerset --no-dev-deps
-      - run: cargo minimal-versions build --workspace --no-private --all-features
+      - run: cargo minimal-versions build --workspace --no-private --detach-path-deps=skip-exact --all-features
 
   miri:
     runs-on: ubuntu-latest
