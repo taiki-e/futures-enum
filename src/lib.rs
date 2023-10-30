@@ -77,8 +77,6 @@ See [auto_enums] crate for how to automate patterns like this.
     )
 ))]
 #![forbid(unsafe_code)]
-#![warn(rust_2018_idioms, single_use_lifetimes, unreachable_pub, clippy::pedantic)]
-#![allow(clippy::doc_markdown)]
 
 use derive_utils::{derive_trait, quick_derive};
 use proc_macro::TokenStream;
