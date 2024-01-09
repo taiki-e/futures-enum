@@ -28,7 +28,7 @@ renamed = ["find-crate"]
 [dependencies]
 derive_utils = { version = "0.11" }
 quote = "1"
-syn = "1"
+syn = "1.0.7"
 
 find-crate = { version = "0.6", optional = true }
 
