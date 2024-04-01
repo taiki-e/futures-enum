@@ -34,7 +34,7 @@ find-crate = { version = "0.6", optional = true }
 
 [dev-dependencies]
 futures = { version = "0.3", default-features = false, features = ["std"] }
-macrotest = { git = "https://github.com/taiki-e/macrotest.git", branch = "dev" } # 2021 edition support + syn 2.0 + no cargo-expand + adjust overwrite behavior
+macrotest = { git = "https://github.com/taiki-e/macrotest.git", branch = "dev" } # adjust overwrite behavior + no cargo-expand
 rustversion = "1"
 
 [lints]
