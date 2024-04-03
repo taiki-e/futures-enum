@@ -33,7 +33,7 @@ syn = "1.0.7"
 find-crate = { version = "0.6", optional = true }
 
 [dev-dependencies]
-futures = { version = "0.3", default-features = false, features = ["std"] }
+futures = { package = "futures-util", version = "0.3", default-features = false, features = ["std", "io", "sink"] }
 macrotest = { git = "https://github.com/taiki-e/macrotest.git", branch = "dev" } # adjust overwrite behavior + no cargo-expand
 rustversion = "1"
 
