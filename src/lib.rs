@@ -14,8 +14,6 @@ futures-enum = "0.1.16"
 futures = "0.3"
 ```
 
-*Compiler support: requires rustc 1.56+*
-
 ## Examples
 
 ```rust
