@@ -2,7 +2,7 @@
 
 #![allow(dead_code)]
 
-use core::future::Future;
+use std::future::Future;
 
 use futures::{AsyncBufRead, AsyncRead, AsyncSeek, AsyncWrite, Sink, Stream};
 use futures_enum::{AsyncBufRead, AsyncRead, AsyncSeek, AsyncWrite, Future, Sink, Stream};
