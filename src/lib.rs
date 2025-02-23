@@ -82,7 +82,7 @@ See [auto_enums] crate for how to automate patterns like this.
 use derive_utils::{derive_trait, quick_derive};
 use proc_macro::TokenStream;
 use quote::{format_ident, quote};
-use syn::{parse_macro_input, parse_quote, Ident};
+use syn::{Ident, parse_macro_input, parse_quote};
 
 fn default_crate_name() -> (Ident, Option<String>) {
     (format_ident!("futures"), None)
