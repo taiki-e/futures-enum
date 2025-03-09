@@ -103,7 +103,7 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
                 let mut pieces = version.split('.');
                 (|| pieces.next()?.parse().ok())() == Some(3)
             } else {
-                crate_names.iter().any(|s| *s == name)
+                crate_names.contains(&name)
             }
         })
         .map_or_else(default_crate_name, |package| {
