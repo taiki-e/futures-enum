@@ -92,10 +92,7 @@ fn default_crate_name() -> (Ident, Option<String>) {
 fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
     use find_crate::Manifest;
 
-    let manifest = match Manifest::new().ok() {
-        Some(manifest) => manifest,
-        None => return default_crate_name(),
-    };
+    let Some(manifest) = Manifest::new().ok() else { return default_crate_name() };
 
     manifest
         .find2(|name, version| {
