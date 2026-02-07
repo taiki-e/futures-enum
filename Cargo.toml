@@ -3,7 +3,7 @@ name = "futures-enum"
 version = "0.1.17" #publish:version
 edition = "2021"
 # NB: Sync with msrv badge in README.md
-rust-version = "1.68" # For syn
+rust-version = "1.76" # For toml (dep of find-crate)
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/taiki-e/futures-enum"
 keywords = ["async", "future", "futures", "derive", "enum"]
@@ -31,7 +31,7 @@ derive_utils = { version = "0.11" }
 quote = "1"
 syn = "1.0.7"
 
-find-crate = { version = "0.6", optional = true }
+find-crate = { version = "0.7", optional = true }
 
 [dev-dependencies]
 futures = { package = "futures-util", version = "0.3", default-features = false, features = ["std", "io", "sink"] }
