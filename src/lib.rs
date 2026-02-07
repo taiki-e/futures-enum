@@ -161,7 +161,7 @@ pub fn derive_stream(input: TokenStream) -> TokenStream {
 #[proc_macro_derive(Sink)]
 pub fn derive_sink(input: TokenStream) -> TokenStream {
     let (crate_, original) = crate_name(&["futures", "futures-sink"]);
-    let path = if original.as_ref().map_or(false, |s| s == "futures-sink") {
+    let path = if original.as_deref() == Some("futures-sink") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::sink)
@@ -199,7 +199,7 @@ pub fn derive_sink(input: TokenStream) -> TokenStream {
 pub fn derive_async_read(input: TokenStream) -> TokenStream {
     let (crate_, original) = crate_name(&["futures", "futures-io"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-io") {
+    let path = if original.as_deref() == Some("futures-io") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::io)
@@ -228,7 +228,7 @@ pub fn derive_async_read(input: TokenStream) -> TokenStream {
 pub fn derive_async_write(input: TokenStream) -> TokenStream {
     let (crate_, original) = crate_name(&["futures", "futures-io"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-io") {
+    let path = if original.as_deref() == Some("futures-io") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::io)
@@ -267,7 +267,7 @@ pub fn derive_async_write(input: TokenStream) -> TokenStream {
 pub fn derive_async_seek(input: TokenStream) -> TokenStream {
     let (crate_, original) = crate_name(&["futures", "futures-io"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-io") {
+    let path = if original.as_deref() == Some("futures-io") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::io)
@@ -290,7 +290,7 @@ pub fn derive_async_seek(input: TokenStream) -> TokenStream {
 pub fn derive_async_buf_read(input: TokenStream) -> TokenStream {
     let (crate_, original) = crate_name(&["futures", "futures-io"]);
 
-    let path = if original.as_ref().map_or(false, |s| s == "futures-io") {
+    let path = if original.as_deref() == Some("futures-io") {
         quote!(::#crate_)
     } else {
         quote!(::#crate_::io)
