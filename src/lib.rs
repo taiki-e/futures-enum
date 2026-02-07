@@ -97,8 +97,7 @@ fn crate_name(crate_names: &[&str]) -> (Ident, Option<String>) {
     manifest
         .find2(|name, version| {
             if name == "futures" {
-                let mut pieces = version.split('.');
-                (|| pieces.next()?.parse().ok())() == Some(3)
+                version == "*" || version == "0.3" || version.starts_with("0.3.")
             } else {
                 crate_names.contains(&name)
             }
