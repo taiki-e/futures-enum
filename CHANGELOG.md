@@ -12,6 +12,14 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Fix bug in crate name detection.
+
+- Update `find-crate` to 0.7.
+
+  This increases the minimum supported Rust version (MSRV) to Rust 1.76.
+
+- Enable [release immutability](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/immutable-releases).
+
 ## [0.1.17] - 2021-01-05
 
 - Exclude unneeded files from crates.io.
@@ -26,69 +34,69 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [0.1.14] - 2020-09-07
 
-- Updated `find-crate` to 0.6.
+- Update `find-crate` to 0.6.
 
 ## [0.1.13] - 2020-06-02
 
-- Updated `derive_utils` to 0.10.
+- Update `derive_utils` to 0.10.
 
 ## [0.1.12] - 2019-11-06
 
-- Updated to support `futures` 0.3.0.
+- Update to support `futures` 0.3.0.
 
 ## [0.1.11] - 2019-09-28
 
-- Updated to support `futures-preview` 0.3.0-alpha.19.
+- Update to support `futures-preview` 0.3.0-alpha.19.
 
 ## [0.1.10] - 2019-08-14
 
-- Added `renamed` feature to allow `find-crate` dependency to opt-out.
+- Add `renamed` feature to allow `find-crate` dependency to opt-out.
 
-- Updated `proc-macro2`, `syn`, and `quote` to 1.0.
+- Update `proc-macro2`, `syn`, and `quote` to 1.0.
 
-- Updated `derive_utils` to 0.9.
+- Update `derive_utils` to 0.9.
 
 ## [0.1.9] - 2019-07-04
 
-- Updated to support `futures-preview` 0.3.0-alpha.17.
+- Update to support `futures-preview` 0.3.0-alpha.17.
 
-- Updated minimum `derive_utils` version to 0.8.0.
+- Update minimum `derive_utils` version to 0.8.0.
 
 ## [0.1.8] - 2019-06-16
 
-- Added support for `futures::io::{AsyncSeek, AsyncBufRead}`.
+- Add support for `futures::io::{AsyncSeek, AsyncBufRead}`.
 
-- Updated minimum `find-crate` version to 0.4.0.
+- Update minimum `find-crate` version to 0.4.0.
 
 ## [0.1.7] - 2019-05-15
 
-- Supported for latest `futures` 0.3.0-alpha.16.
+- Support for latest `futures` 0.3.0-alpha.16.
 
 ## [0.1.6] - 2019-04-16
 
-- Updated to new nightly.
+- Update to new nightly.
 
-- Updated minimum `derive_utils` version to 0.7.0.
+- Update minimum `derive_utils` version to 0.7.0.
 
 ## [0.1.5] - 2019-03-04
 
-- Updated minimum `find-crate` version to 0.3.0.
+- Update minimum `find-crate` version to 0.3.0.
 
-- Fixed documentation.
+- Fix documentation.
 
 ## [0.1.4] - 2019-02-21
 
-- Updated to new nightly.
+- Update to new nightly.
 
 ## [0.1.3] - 2019-02-13
 
 - `futures-enum` works well even if the dependency contains only sub-crates such as `futures-core`, `futures-util`, etc.
 
-- Added generated code examples.
+- Add generated code examples.
 
 ## [0.1.2] - 2019-02-05
 
-- Updated minimum `derive_utils` version to 0.6.3.
+- Update minimum `derive_utils` version to 0.6.3.
 
 ## [0.1.1] - 2019-02-03
 
