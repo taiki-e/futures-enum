@@ -25,7 +25,7 @@ futures = "0.3"
 ```rust
 use std::future::Future;
 
-use futures_enum::*;
+use futures_enum::{Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead};
 
 #[derive(Future, Stream, Sink, AsyncRead, AsyncWrite, AsyncSeek, AsyncBufRead)]
 enum Either<A, B> {
