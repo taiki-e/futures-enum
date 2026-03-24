@@ -3,7 +3,7 @@ name = "futures-enum"
 version = "0.1.18" #publish:version
 edition = "2021"
 # NB: Sync with msrv badge in README.md
-rust-version = "1.76" # For toml (dep of find-crate)
+rust-version = "1.85" # For toml (dep of find-crate)
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/taiki-e/futures-enum"
 keywords = ["async", "future", "futures", "derive", "enum"]
