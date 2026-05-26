@@ -31,20 +31,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  miri:
-    uses: taiki-e/github-actions/.github/workflows/miri.yml@5f549ff6b21e9a853f5f613784d5db27746fd2bc # main
-  msrv:
-    uses: taiki-e/github-actions/.github/workflows/msrv.yml@5f549ff6b21e9a853f5f613784d5db27746fd2bc # main
   tidy:
-    uses: taiki-e/github-actions/.github/workflows/tidy.yml@5f549ff6b21e9a853f5f613784d5db27746fd2bc # main
+    uses: taiki-e/github-actions/.github/workflows/tidy.yml@1bb80ca038216cd1fb7b6ca6d76240b3772963ab # main
     permissions:
-      contents: write # for creating branch for pr
-      pull-requests: write # unused (used in `codegen-automerge: true` case)
       security-events: write # for github/codeql-action/*
-    secrets:
-      PR_TOKEN_APP_PRIVATE_KEY: ${{ secrets.PR_TOKEN_APP_PRIVATE_KEY }}
+  miri:
+    needs: tidy
+    uses: taiki-e/github-actions/.github/workflows/rust-miri.yml@1bb80ca038216cd1fb7b6ca6d76240b3772963ab # main
+  msrv:
+    needs: tidy
+    uses: taiki-e/github-actions/.github/workflows/rust-msrv.yml@1bb80ca038216cd1fb7b6ca6d76240b3772963ab # main
 
   test:
+    needs: tidy
     strategy:
       fail-fast: false
       matrix:
@@ -56,12 +55,9 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: taiki-e/checkout-action@7d1e50e93dc4fb3bba58f85018fadf77898aee8b # v1.4.2
-      - uses: taiki-e/github-actions/install-rust@5f549ff6b21e9a853f5f613784d5db27746fd2bc # main # zizmor: ignore[stale-action-refs]
+      - uses: taiki-e/install-action@c070f87102a1c75b3183910f391c1cb887fe13c8 # v2.77.6
         with:
-          toolchain: ${{ matrix.rust }}
-      - uses: taiki-e/install-action@58e862542551f667fa44c8a2a4a1d64ad477c96a # v2.75.17
-        with:
-          tool: cargo-hack,cargo-minimal-versions
+          tool: rust@${{ matrix.rust }},cargo-hack,cargo-minimal-versions
           fallback: none
       - run: cargo test --no-default-features
       - run: cargo test --workspace --all-features
